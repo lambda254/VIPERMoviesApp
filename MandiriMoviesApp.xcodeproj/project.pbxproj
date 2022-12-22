@@ -10,7 +10,7 @@
 		6987C78964B5A70F58842153 /* Pods_MandiriMoviesApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73AA29FBB8AE0B500FD8DD7 /* Pods_MandiriMoviesApp.framework */; };
 		B5D8DC0C2954977200863C13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D8DC0B2954977200863C13 /* AppDelegate.swift */; };
 		B5D8DC0E2954977200863C13 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D8DC0D2954977200863C13 /* SceneDelegate.swift */; };
-		B5D8DC102954977200863C13 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D8DC0F2954977200863C13 /* MainViewController.swift */; };
+		B5D8DC102954977200863C13 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D8DC0F2954977200863C13 /* Controller.swift */; };
 		B5D8DC132954977200863C13 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5D8DC112954977200863C13 /* Main.storyboard */; };
 		B5D8DC152954977300863C13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5D8DC142954977300863C13 /* Assets.xcassets */; };
 		B5D8DC182954977300863C13 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5D8DC162954977300863C13 /* LaunchScreen.storyboard */; };
@@ -26,7 +26,7 @@
 		B5D8DC082954977200863C13 /* MandiriMoviesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MandiriMoviesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5D8DC0B2954977200863C13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5D8DC0D2954977200863C13 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B5D8DC0F2954977200863C13 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		B5D8DC0F2954977200863C13 /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
 		B5D8DC122954977200863C13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B5D8DC142954977300863C13 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5D8DC172954977300863C13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -93,7 +93,6 @@
 				B5F5783829549B7100B09608 /* Presentation */,
 				B5D8DC0B2954977200863C13 /* AppDelegate.swift */,
 				B5D8DC0D2954977200863C13 /* SceneDelegate.swift */,
-				B5D8DC0F2954977200863C13 /* MainViewController.swift */,
 				B5D8DC112954977200863C13 /* Main.storyboard */,
 				B5D8DC142954977300863C13 /* Assets.xcassets */,
 				B5D8DC162954977300863C13 /* LaunchScreen.storyboard */,
@@ -118,6 +117,7 @@
 				B5F5783E29549BA500B09608 /* Presenter.swift */,
 				B5F5784029549BAD00B09608 /* Interactor.swift */,
 				B5F5784229549BB300B09608 /* View.swift */,
+				B5D8DC0F2954977200863C13 /* Controller.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -241,7 +241,7 @@
 				B5F5783F29549BA500B09608 /* Presenter.swift in Sources */,
 				B5F5783A29549B8500B09608 /* Router.swift in Sources */,
 				B5F5783D29549B9900B09608 /* Entity.swift in Sources */,
-				B5D8DC102954977200863C13 /* MainViewController.swift in Sources */,
+				B5D8DC102954977200863C13 /* Controller.swift in Sources */,
 				B5D8DC0C2954977200863C13 /* AppDelegate.swift in Sources */,
 				B5F5784129549BAD00B09608 /* Interactor.swift in Sources */,
 				B5D8DC0E2954977200863C13 /* SceneDelegate.swift in Sources */,

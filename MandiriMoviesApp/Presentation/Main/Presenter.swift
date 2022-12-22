@@ -8,19 +8,19 @@
 import Foundation
 
 protocol MainPresenterProtocol {
-    var router: MainRouterProtocol? {get set}
+    var router: MainRouter? {get set}
     var interactor: MainInteractorProtocol? {get set}
-    var view: MainView? {get set}
+    var view: MainViewProtocol? {get set}
     
     func didFetchMovies(with result: Result<[MovieMain], Error>)
 }
 
 class MainPresenter: MainPresenterProtocol {
-    var router: MainRouterProtocol?
+    var router: MainRouter?
     
     var interactor: MainInteractorProtocol?
     
-    var view: MainView?
+    var view: MainViewProtocol?
     
     func didFetchMovies(with result: Result<[MovieMain], Error>) {
         

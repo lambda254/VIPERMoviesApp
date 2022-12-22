@@ -6,5 +6,6 @@ target 'MandiriMoviesApp' do
   use_frameworks!
 
   pod 'TextureSwiftSupport'
+pod 'Moya', '~> 15.0'
 
 end

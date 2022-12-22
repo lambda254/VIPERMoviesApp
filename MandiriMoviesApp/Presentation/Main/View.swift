@@ -9,15 +9,7 @@ import Foundation
 import TextureSwiftSupport
 
 protocol MainViewProtocol {
-    var presenter: MainPresenterProtocol? {get set}
+    var presenter: MainPresenter? {get set}
     func update(with movies: [MovieMain])
     func update(with errors: String)
-}
-
-class MainView: ASDKViewController<ASScrollNode> {
-    
-}
-
-extension MainView: MainViewProtocol {
-    
 }
