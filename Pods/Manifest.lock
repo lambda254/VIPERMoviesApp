@@ -1,0 +1,39 @@
+PODS:
+  - Descriptors (0.2.1):
+    - Descriptors/Core (= 0.2.1)
+  - Descriptors/Core (0.2.1)
+  - Texture/Core (3.1.0)
+  - TextureSwiftSupport (3.19.0):
+    - Texture/Core (>= 3)
+    - TextureSwiftSupport/Components (= 3.19.0)
+    - TextureSwiftSupport/Experiments (= 3.19.0)
+    - TextureSwiftSupport/Extensions (= 3.19.0)
+    - TextureSwiftSupport/LayoutSpecBuilders (= 3.19.0)
+  - TextureSwiftSupport/Components (3.19.0):
+    - Descriptors (>= 0.2.1)
+    - Texture/Core (>= 3)
+    - TextureSwiftSupport/LayoutSpecBuilders
+  - TextureSwiftSupport/Experiments (3.19.0):
+    - Texture/Core (>= 3)
+  - TextureSwiftSupport/Extensions (3.19.0):
+    - Texture/Core (>= 3)
+  - TextureSwiftSupport/LayoutSpecBuilders (3.19.0):
+    - Texture/Core (>= 3)
+
+DEPENDENCIES:
+  - TextureSwiftSupport
+
+SPEC REPOS:
+  trunk:
+    - Descriptors
+    - Texture
+    - TextureSwiftSupport
+
+SPEC CHECKSUMS:
+  Descriptors: 44f9f316368c2815048b1062e0be49be59c1c696
+  Texture: 2e8ab2519452515f7f5a520f5a8f7e0a413abfa3
+  TextureSwiftSupport: 2de508abb74363be84f02721c5f0c273439963ee
+
+PODFILE CHECKSUM: b0e04e8eeff205b106742fdc678037039c38c177
+
+COCOAPODS: 1.11.3
