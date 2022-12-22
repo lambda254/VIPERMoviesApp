@@ -1,0 +1,11 @@
+//
+//  Config.xcconfig
+//  MandiriMoviesApp
+//
+//  Created by Reza Mac on 22/12/22.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+API_KEY = f9c2322e91d0f2eb8a22e15622c72b80

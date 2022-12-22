@@ -18,12 +18,21 @@ protocol MainPresenterProtocol {
 class MainPresenter: MainPresenterProtocol {
     var router: MainRouter?
     
-    var interactor: MainInteractorProtocol?
+    var interactor: MainInteractorProtocol? {
+        didSet {
+            interactor?.getMovies()
+        }
+    }
     
     var view: MainViewProtocol?
     
     func didFetchMovies(with result: Result<[MovieMain], Error>) {
-        
+        switch result {
+        case .success(let movies):
+            view?.update(with: movies)
+        case .failure(let errors):
+            print(errors)
+        }
     }
     
     

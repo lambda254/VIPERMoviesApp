@@ -1,4 +1,5 @@
 ${PODS_ROOT}/Target Support Files/Pods-MandiriMoviesApp/Pods-MandiriMoviesApp-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Descriptors/Descriptors.framework
+${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework
 ${BUILT_PRODUCTS_DIR}/Texture/AsyncDisplayKit.framework
 ${BUILT_PRODUCTS_DIR}/TextureSwiftSupport/TextureSwiftSupport.framework

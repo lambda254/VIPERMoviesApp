@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "648300E0-1B82-4AF4-9B8D-EA1DB59A915B"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5766A144-D539-4939-988A-90C58C96C153"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MandiriMoviesApp/Presentation/Main/Interactor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "getMovies()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5766A144-D539-4939-988A-90C58C96C153 - a5c3a44a2ef1008b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MandiriMoviesApp.MainInteractor.getMovies() -&gt; ()"
+                  moduleName = "MandiriMoviesApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rezamac/Desktop/Personal%20Project/MandiriMoviesApp/MandiriMoviesApp/Presentation/Main/Interactor.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "96">
+               </Location>
+               <Location
+                  uuid = "5766A144-D539-4939-988A-90C58C96C153 - c78ec4d6333b24ce"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Moya.Response, Moya.MoyaError&gt;) -&gt; () in MandiriMoviesApp.MainInteractor.getMovies() -&gt; ()"
+                  moduleName = "MandiriMoviesApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rezamac/Desktop/Personal%20Project/MandiriMoviesApp/MandiriMoviesApp/Presentation/Main/Interactor.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "252">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

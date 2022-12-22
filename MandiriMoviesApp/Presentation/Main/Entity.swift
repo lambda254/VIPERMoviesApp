@@ -12,5 +12,5 @@ struct MovieMain {
     let id: Int
     let title: String
     let poster: String
-    let posterImage: UIImage
+    var posterImage: UIImage
 }
