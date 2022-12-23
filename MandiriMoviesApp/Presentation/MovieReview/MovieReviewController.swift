@@ -15,6 +15,8 @@ class MovieReviewController: ASDKViewController<ASScrollNode> {
     
     private let reviewTableNode = ReviewTableNode()
     
+    private var isLoading = true
+    
     private let rootNode: ASScrollNode = {
         let node = ASScrollNode()
         node.automaticallyManagesSubnodes = true
@@ -32,6 +34,19 @@ class MovieReviewController: ASDKViewController<ASScrollNode> {
         return node
     }()
     
+    private let loadingNode: ASDisplayNode = {
+        let node = ASDisplayNode()
+        let loadingSpinner: UIActivityIndicatorView = {
+            let loadingSpinner = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.medium)
+            loadingSpinner.translatesAutoresizingMaskIntoConstraints = false
+            loadingSpinner.hidesWhenStopped = true
+            return loadingSpinner
+        }()
+        loadingSpinner.startAnimating()
+        node.view.addSubview(loadingSpinner)
+        return node
+    }()
+    
     override init() {
         super.init(node: rootNode)
         self.title = "Review"
@@ -39,7 +54,7 @@ class MovieReviewController: ASDKViewController<ASScrollNode> {
             return LayoutSpec {
                 CenterLayout(centeringOptions: .X) {
                     InsetLayout(insets: UIEdgeInsets(top: 100, left: 0, bottom: 0, right: 0)) {
-                        reviewTableNode
+                        isLoading ? loadingNode : reviewTableNode.data.isEmpty ? warningNode : reviewTableNode
                     }
                 }
             }
@@ -68,6 +83,8 @@ extension MovieReviewController: MovieReviewViewProtocol {
     func update(with review: [MovieReview]) {
         reviewTableNode.data = review
         reviewTableNode.reloadData()
+        rootNode.setNeedsLayout()
+        isLoading.toggle()
     }
     
 }
