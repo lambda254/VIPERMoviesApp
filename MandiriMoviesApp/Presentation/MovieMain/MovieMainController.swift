@@ -8,9 +8,9 @@
 import UIKit
 import TextureSwiftSupport
 
-class MainViewController: ASDKViewController<ASScrollNode> {
+class MovieMainController: ASDKViewController<ASScrollNode> {
     
-    var presenter: MainPresenter?
+    var presenter: MovieMainPresenter?
     
     private let movieCollectionNode = MainCollectionNode()
     
@@ -49,7 +49,7 @@ class MainViewController: ASDKViewController<ASScrollNode> {
     
 }
 
-extension MainViewController: MainViewProtocol {
+extension MovieMainController: MovieMainViewProtocol {
     
     func update(with movies: [MovieMain]) {
         movieCollectionNode.data = movies
@@ -62,14 +62,14 @@ extension MainViewController: MainViewProtocol {
     
 }
 
-extension MainViewController: MainCollectionDelegate {
+extension MovieMainController: MainCollectionDelegate {
     
     func fetchNewData() {
         
     }
     
     func didCellTap(id: Int, title: String, poster: UIImage) {
-        print(title)
+        presenter?.navigateToDetail(id: id, title: title, poster: poster)
     }
     
     

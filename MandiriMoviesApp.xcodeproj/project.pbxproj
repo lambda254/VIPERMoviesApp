@@ -8,16 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		6987C78964B5A70F58842153 /* Pods_MandiriMoviesApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73AA29FBB8AE0B500FD8DD7 /* Pods_MandiriMoviesApp.framework */; };
+		B5C7A25F2954B5520087586F /* MovieDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C7A25E2954B5520087586F /* MovieDetailController.swift */; };
+		B5C7A2612954B92F0087586F /* MovieDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C7A2602954B92F0087586F /* MovieDetailView.swift */; };
+		B5C7A2632954BAC90087586F /* MovieDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C7A2622954BAC90087586F /* MovieDetailRouter.swift */; };
+		B5C7A2662954BCF70087586F /* Alias.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C7A2652954BCF70087586F /* Alias.swift */; };
+		B5C7A268295531420087586F /* MovieDetailEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C7A267295531420087586F /* MovieDetailEntity.swift */; };
+		B5C7A26A295531C70087586F /* MovieDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C7A269295531C70087586F /* MovieDetailPresenter.swift */; };
+		B5C7A26C295531FC0087586F /* MovieDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C7A26B295531FC0087586F /* MovieDetailInteractor.swift */; };
+		B5C7A26F2955383A0087586F /* YouTubeiOSPlayerHelper in Frameworks */ = {isa = PBXBuildFile; productRef = B5C7A26E2955383A0087586F /* YouTubeiOSPlayerHelper */; };
 		B5D8DC0C2954977200863C13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D8DC0B2954977200863C13 /* AppDelegate.swift */; };
 		B5D8DC0E2954977200863C13 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D8DC0D2954977200863C13 /* SceneDelegate.swift */; };
-		B5D8DC102954977200863C13 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D8DC0F2954977200863C13 /* Controller.swift */; };
+		B5D8DC102954977200863C13 /* MovieMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D8DC0F2954977200863C13 /* MovieMainController.swift */; };
 		B5D8DC152954977300863C13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5D8DC142954977300863C13 /* Assets.xcassets */; };
 		B5D8DC182954977300863C13 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5D8DC162954977300863C13 /* LaunchScreen.storyboard */; };
-		B5F5783A29549B8500B09608 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F5783929549B8500B09608 /* Router.swift */; };
-		B5F5783D29549B9900B09608 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F5783C29549B9900B09608 /* Entity.swift */; };
-		B5F5783F29549BA500B09608 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F5783E29549BA500B09608 /* Presenter.swift */; };
-		B5F5784129549BAD00B09608 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F5784029549BAD00B09608 /* Interactor.swift */; };
-		B5F5784329549BB300B09608 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F5784229549BB300B09608 /* View.swift */; };
+		B5F5783A29549B8500B09608 /* MovieMainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F5783929549B8500B09608 /* MovieMainRouter.swift */; };
+		B5F5783D29549B9900B09608 /* MovieMainEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F5783C29549B9900B09608 /* MovieMainEntity.swift */; };
+		B5F5783F29549BA500B09608 /* MovieMainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F5783E29549BA500B09608 /* MovieMainPresenter.swift */; };
+		B5F5784129549BAD00B09608 /* MovieMainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F5784029549BAD00B09608 /* MovieMainInteractor.swift */; };
+		B5F5784329549BB300B09608 /* MovieMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F5784229549BB300B09608 /* MovieMainView.swift */; };
 		B5F578462954A5E900B09608 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = B5F578452954A5E900B09608 /* Moya */; };
 		B5F5784A2954A60600B09608 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F578492954A60600B09608 /* NetworkService.swift */; };
 		B5F578502954A7DF00B09608 /* MainCollectionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F5784F2954A7DF00B09608 /* MainCollectionNode.swift */; };
@@ -26,18 +34,25 @@
 
 /* Begin PBXFileReference section */
 		46ED7C5907D8D9DB8A2A4195 /* Pods-MandiriMoviesApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MandiriMoviesApp.debug.xcconfig"; path = "Target Support Files/Pods-MandiriMoviesApp/Pods-MandiriMoviesApp.debug.xcconfig"; sourceTree = "<group>"; };
+		B5C7A25E2954B5520087586F /* MovieDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailController.swift; sourceTree = "<group>"; };
+		B5C7A2602954B92F0087586F /* MovieDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailView.swift; sourceTree = "<group>"; };
+		B5C7A2622954BAC90087586F /* MovieDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailRouter.swift; sourceTree = "<group>"; };
+		B5C7A2652954BCF70087586F /* Alias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alias.swift; sourceTree = "<group>"; };
+		B5C7A267295531420087586F /* MovieDetailEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailEntity.swift; sourceTree = "<group>"; };
+		B5C7A269295531C70087586F /* MovieDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailPresenter.swift; sourceTree = "<group>"; };
+		B5C7A26B295531FC0087586F /* MovieDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailInteractor.swift; sourceTree = "<group>"; };
 		B5D8DC082954977200863C13 /* MandiriMoviesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MandiriMoviesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5D8DC0B2954977200863C13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5D8DC0D2954977200863C13 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B5D8DC0F2954977200863C13 /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
+		B5D8DC0F2954977200863C13 /* MovieMainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieMainController.swift; sourceTree = "<group>"; };
 		B5D8DC142954977300863C13 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5D8DC172954977300863C13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B5D8DC192954977300863C13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B5F5783929549B8500B09608 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
-		B5F5783C29549B9900B09608 /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
-		B5F5783E29549BA500B09608 /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
-		B5F5784029549BAD00B09608 /* Interactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
-		B5F5784229549BB300B09608 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		B5F5783929549B8500B09608 /* MovieMainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieMainRouter.swift; sourceTree = "<group>"; };
+		B5F5783C29549B9900B09608 /* MovieMainEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieMainEntity.swift; sourceTree = "<group>"; };
+		B5F5783E29549BA500B09608 /* MovieMainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieMainPresenter.swift; sourceTree = "<group>"; };
+		B5F5784029549BAD00B09608 /* MovieMainInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieMainInteractor.swift; sourceTree = "<group>"; };
+		B5F5784229549BB300B09608 /* MovieMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieMainView.swift; sourceTree = "<group>"; };
 		B5F578492954A60600B09608 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		B5F5784C2954A65800B09608 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		B5F5784F2954A7DF00B09608 /* MainCollectionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionNode.swift; sourceTree = "<group>"; };
@@ -53,6 +68,7 @@
 			files = (
 				B5F578462954A5E900B09608 /* Moya in Frameworks */,
 				6987C78964B5A70F58842153 /* Pods_MandiriMoviesApp.framework in Frameworks */,
+				B5C7A26F2955383A0087586F /* YouTubeiOSPlayerHelper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +90,27 @@
 				BB089148AACE5A5AE2E60730 /* Pods-MandiriMoviesApp.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		B5C7A25D2954B2FF0087586F /* MovieDetail */ = {
+			isa = PBXGroup;
+			children = (
+				B5C7A25E2954B5520087586F /* MovieDetailController.swift */,
+				B5C7A2602954B92F0087586F /* MovieDetailView.swift */,
+				B5C7A2622954BAC90087586F /* MovieDetailRouter.swift */,
+				B5C7A267295531420087586F /* MovieDetailEntity.swift */,
+				B5C7A269295531C70087586F /* MovieDetailPresenter.swift */,
+				B5C7A26B295531FC0087586F /* MovieDetailInteractor.swift */,
+			);
+			path = MovieDetail;
+			sourceTree = "<group>";
+		};
+		B5C7A2642954BCE00087586F /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				B5C7A2652954BCF70087586F /* Alias.swift */,
+			);
+			path = Global;
 			sourceTree = "<group>";
 		};
 		B5D8DBFF2954977200863C13 = {
@@ -110,28 +147,30 @@
 		B5F5783829549B7100B09608 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				B5F5783B29549B8A00B09608 /* Main */,
+				B5C7A25D2954B2FF0087586F /* MovieDetail */,
+				B5F5783B29549B8A00B09608 /* MovieMain */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
 		};
-		B5F5783B29549B8A00B09608 /* Main */ = {
+		B5F5783B29549B8A00B09608 /* MovieMain */ = {
 			isa = PBXGroup;
 			children = (
 				B5F5784E2954A78B00B09608 /* CollectionNode */,
-				B5F5783929549B8500B09608 /* Router.swift */,
-				B5F5783C29549B9900B09608 /* Entity.swift */,
-				B5F5783E29549BA500B09608 /* Presenter.swift */,
-				B5F5784029549BAD00B09608 /* Interactor.swift */,
-				B5F5784229549BB300B09608 /* View.swift */,
-				B5D8DC0F2954977200863C13 /* Controller.swift */,
+				B5F5783929549B8500B09608 /* MovieMainRouter.swift */,
+				B5F5783C29549B9900B09608 /* MovieMainEntity.swift */,
+				B5F5783E29549BA500B09608 /* MovieMainPresenter.swift */,
+				B5F5784029549BAD00B09608 /* MovieMainInteractor.swift */,
+				B5F5784229549BB300B09608 /* MovieMainView.swift */,
+				B5D8DC0F2954977200863C13 /* MovieMainController.swift */,
 			);
-			path = Main;
+			path = MovieMain;
 			sourceTree = "<group>";
 		};
 		B5F578472954A5F700B09608 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				B5C7A2642954BCE00087586F /* Global */,
 				B5F5784B2954A64900B09608 /* Config */,
 				B5F578482954A5FD00B09608 /* Service */,
 			);
@@ -192,6 +231,7 @@
 			name = MandiriMoviesApp;
 			packageProductDependencies = (
 				B5F578452954A5E900B09608 /* Moya */,
+				B5C7A26E2955383A0087586F /* YouTubeiOSPlayerHelper */,
 			);
 			productName = MandiriMoviesApp;
 			productReference = B5D8DC082954977200863C13 /* MandiriMoviesApp.app */;
@@ -223,6 +263,7 @@
 			mainGroup = B5D8DBFF2954977200863C13;
 			packageReferences = (
 				B5F578442954A5E900B09608 /* XCRemoteSwiftPackageReference "Moya" */,
+				B5C7A26D2955383A0087586F /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */,
 			);
 			productRefGroup = B5D8DC092954977200863C13 /* Products */;
 			projectDirPath = "";
@@ -292,17 +333,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5F5784329549BB300B09608 /* View.swift in Sources */,
-				B5F5783F29549BA500B09608 /* Presenter.swift in Sources */,
-				B5F5783A29549B8500B09608 /* Router.swift in Sources */,
-				B5F5783D29549B9900B09608 /* Entity.swift in Sources */,
+				B5F5784329549BB300B09608 /* MovieMainView.swift in Sources */,
+				B5F5783F29549BA500B09608 /* MovieMainPresenter.swift in Sources */,
+				B5C7A268295531420087586F /* MovieDetailEntity.swift in Sources */,
+				B5F5783A29549B8500B09608 /* MovieMainRouter.swift in Sources */,
+				B5F5783D29549B9900B09608 /* MovieMainEntity.swift in Sources */,
+				B5C7A2662954BCF70087586F /* Alias.swift in Sources */,
 				B5F578522954A82C00B09608 /* MainCellNode.swift in Sources */,
 				B5F578502954A7DF00B09608 /* MainCollectionNode.swift in Sources */,
 				B5F5784A2954A60600B09608 /* NetworkService.swift in Sources */,
-				B5D8DC102954977200863C13 /* Controller.swift in Sources */,
+				B5C7A2612954B92F0087586F /* MovieDetailView.swift in Sources */,
+				B5D8DC102954977200863C13 /* MovieMainController.swift in Sources */,
 				B5D8DC0C2954977200863C13 /* AppDelegate.swift in Sources */,
-				B5F5784129549BAD00B09608 /* Interactor.swift in Sources */,
+				B5C7A2632954BAC90087586F /* MovieDetailRouter.swift in Sources */,
+				B5C7A25F2954B5520087586F /* MovieDetailController.swift in Sources */,
+				B5C7A26C295531FC0087586F /* MovieDetailInteractor.swift in Sources */,
+				B5F5784129549BAD00B09608 /* MovieMainInteractor.swift in Sources */,
 				B5D8DC0E2954977200863C13 /* SceneDelegate.swift in Sources */,
+				B5C7A26A295531C70087586F /* MovieDetailPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,6 +566,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B5C7A26D2955383A0087586F /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/youtube/youtube-ios-player-helper";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.4;
+			};
+		};
 		B5F578442954A5E900B09608 /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya";
@@ -529,6 +585,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B5C7A26E2955383A0087586F /* YouTubeiOSPlayerHelper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B5C7A26D2955383A0087586F /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */;
+			productName = YouTubeiOSPlayerHelper;
+		};
 		B5F578452954A5E900B09608 /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B5F578442954A5E900B09608 /* XCRemoteSwiftPackageReference "Moya" */;

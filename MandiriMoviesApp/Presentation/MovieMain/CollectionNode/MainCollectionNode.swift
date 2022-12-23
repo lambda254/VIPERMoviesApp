@@ -18,9 +18,7 @@ class MainCollectionNode: ASCollectionNode {
     weak var collectionDelegate: MainCollectionDelegate?
     
     var data = [MovieMain]()
-    
-    var posterArray = [UIImage]()
-    
+        
     var posterCounter = 0
     
     var doneReloading = false
@@ -48,7 +46,6 @@ extension MainCollectionNode: ASCollectionDelegate, ASCollectionDataSource {
     }
         func collectionNode(_ collectionNode: ASCollectionNode, nodeBlockForItemAt indexPath: IndexPath) -> ASCellNodeBlock {
             let cellNodeBlock = {[self] () -> ASCellNode in
-                print(data[indexPath.row].posterImage)
                 let cellNode = MainCellNode(movieId: data[indexPath.row].id, title: data[indexPath.row].title, poster: data[indexPath.row].posterImage)
                 return cellNode
             }

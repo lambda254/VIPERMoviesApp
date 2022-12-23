@@ -9,15 +9,15 @@ import Foundation
 import Moya
 import SwiftyJSON
 
-protocol MainInteractorProtocol {
-    var presenter: MainPresenter? {get set}
+protocol MovieMainInteractorProtocol {
+    var presenter: MovieMainPresenter? {get set}
     
     func getMovies()
     func getPosterImage(imageString: String, completion: @escaping (UIImage) -> Void)
 }
 
-class MainInteractor: MainInteractorProtocol {
-    var presenter: MainPresenter?
+class MovieMainInteractor: MovieMainInteractorProtocol {
+    var presenter: MovieMainPresenter?
     
     private var networkProvider = MoyaProvider<NetworkService>()
     
