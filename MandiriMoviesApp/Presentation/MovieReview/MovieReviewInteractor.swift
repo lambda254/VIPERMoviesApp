@@ -12,6 +12,8 @@ import UIKit
 
 protocol MovieReviewInteractorProtocol {
     var presenter: MovieReviewPresenter? {get set}
+    
+    func getReviewData(movieId: Int, completion: @escaping ([MovieReview]) -> Void)
 
 }
 
@@ -20,5 +22,21 @@ class MovieReviewInteractor: MovieReviewInteractorProtocol {
     
     private var networkProvider = MoyaProvider<NetworkService>()
     
-    
+    func getReviewData(movieId: Int, completion: @escaping ([MovieReview]) -> Void) {
+        var data = [MovieReview]()
+        networkProvider.request(.fetchReviewData(movieId: movieId, page: 1)) { result in
+            switch result {
+            case .success(let response):
+                let json = try! JSON(data: response.data)
+                let jsonResult = json["results"]
+            
+                for i in 0 ..< jsonResult.count {
+                    data.append(MovieReview(username: jsonResult[i]["author"].string ?? "", review: jsonResult[i]["content"].string ?? ""))
+                }
+                completion(data)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }

@@ -12,6 +12,8 @@ protocol MovieReviewPresenterProtocol {
     var router: MovieReviewRouter? {get set}
     var interactor: MovieReviewInteractorProtocol? {get set}
     var view: MovieReviewViewProtocol? {get set}
+    
+    func didPassedMovieId(movieId: Int)
         
     func dismissView()
 }
@@ -22,9 +24,17 @@ class MovieReviewPresenter: MovieReviewPresenterProtocol {
     var interactor: MovieReviewInteractorProtocol?
     
     var view: MovieReviewViewProtocol?
+    
+    var movieId: Int?
 
     func dismissView() {
         router?.dismissView()
+    }
+    
+    func didPassedMovieId(movieId: Int) {
+        interactor?.getReviewData(movieId: movieId, completion: {[unowned self] data in
+            view?.update(with: data)
+        })
     }
     
 }

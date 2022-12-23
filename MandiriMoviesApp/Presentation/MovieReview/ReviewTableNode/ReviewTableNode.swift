@@ -26,12 +26,11 @@ class ReviewTableNode: ASTableNode {
 
 extension ReviewTableNode: ASTableDelegate, ASTableDataSource {
     func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
-        return 10 
-        
+        return data.count
     }
     
     func tableNode(_ tableNode: ASTableNode, nodeBlockForRowAt indexPath: IndexPath) -> ASCellNodeBlock {
-        let cell = ReviewCellNode(username: "aaa", review: "afafafaf")
+        let cell = ReviewCellNode(username: data[indexPath.row].username, review: data[indexPath.row].review)
         
         let cellNodeBlock = { () -> ASCellNode in
             return cell

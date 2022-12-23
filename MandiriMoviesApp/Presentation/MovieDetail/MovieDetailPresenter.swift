@@ -25,8 +25,11 @@ class MovieDetailPresenter: MovieDetailPresenterProtocol {
     var interactor: MovieDetailInteractorProtocol?
     
     var view: MovieDetailViewProtocol?
+    
+    var movieId: Int?
 
     func didPassedMovieData(id: Int, title: String, posterImage: UIImage){
+        self.movieId = id
         view?.update(title: title, posterImage: posterImage)
         interactor?.getDetailMovie(movieId: id, completion: {[unowned self] data in
             view?.update(with: data)
@@ -41,7 +44,7 @@ class MovieDetailPresenter: MovieDetailPresenterProtocol {
     }
     
     func navigateToReview() {
-        router?.navigateToReview()
+        router?.navigateToReview(movieId: movieId ?? 0)
     }
     
 }

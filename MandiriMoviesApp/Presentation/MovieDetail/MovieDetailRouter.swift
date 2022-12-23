@@ -12,7 +12,7 @@ protocol MovieDetailRouterProtocol {
     var entry: MovieDetailPoint? { get }
     static func start() -> MovieDetailRouter
     
-    func navigateToReview()
+    func navigateToReview(movieId: Int)
     
     func dismissView()
 }
@@ -42,9 +42,10 @@ class MovieDetailRouter: MovieDetailRouterProtocol {
         entry?.dismiss(animated: true)
     }
     
-    func navigateToReview() {
+    func navigateToReview(movieId: Int) {
         let nextRouter = MovieReviewRouter.start()
         guard let vc = nextRouter.entry else { return }
-        entry?.present(vc, animated: true)
+        vc.presenter?.didPassedMovieId(movieId: movieId)
+        entry?.navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -65,16 +65,9 @@ class MovieReviewController: ASDKViewController<ASScrollNode> {
 
 extension MovieReviewController: MovieReviewViewProtocol {
     
-    func update(with Review: MovieReview) {
-        
-    }
-    
-    func update(title: String, posterImage: UIImage) {
-        
-    }
-    
-    func update(trailer: String) {
-        
+    func update(with review: [MovieReview]) {
+        reviewTableNode.data = review
+        reviewTableNode.reloadData()
     }
     
 }

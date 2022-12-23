@@ -152,6 +152,13 @@
 			path = ReviewTableNode;
 			sourceTree = "<group>";
 		};
+		B5C7A2822955658D0087586F /* GenreMain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = GenreMain;
+			sourceTree = "<group>";
+		};
 		B5D8DBFF2954977200863C13 = {
 			isa = PBXGroup;
 			children = (
@@ -186,6 +193,7 @@
 		B5F5783829549B7100B09608 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				B5C7A2822955658D0087586F /* GenreMain */,
 				B5C7A27029554EC40087586F /* MovieReview */,
 				B5C7A25D2954B2FF0087586F /* MovieDetail */,
 				B5F5783B29549B8A00B09608 /* MovieMain */,

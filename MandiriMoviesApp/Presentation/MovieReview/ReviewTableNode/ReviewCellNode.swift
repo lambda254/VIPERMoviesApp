@@ -22,7 +22,7 @@ class ReviewCellNode: ASCellNode {
     
     private lazy var backgroundContainer: ASDisplayNode = {
         let node = ASDisplayNode()
-        node.backgroundColor = .black
+        node.backgroundColor = .gray
         node.automaticallyManagesSubnodes = true
         node.cornerRadius = 20
         

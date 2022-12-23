@@ -14,6 +14,7 @@ enum NetworkService {
     case fetchDetailData(movieId: Int)
     case fetchReviewData(movieId: Int, page: Int)
     case fetchTrailerData(movieId: Int)
+    case fetchGenreData
 }
 
 extension NetworkService: TargetType {
@@ -24,7 +25,7 @@ extension NetworkService: TargetType {
     
     var baseURL: URL {
         switch self {
-        case .fetchAllMovieTitle, .fetchDetailData, .fetchReviewData, .fetchTrailerData:
+        case .fetchAllMovieTitle, .fetchDetailData, .fetchReviewData, .fetchTrailerData, .fetchGenreData:
             return URL(string: "https://api.themoviedb.org") ?? self.baseURL
         case .fetchAllMoviePoster:
             return URL(string: "https://image.tmdb.org") ?? self.baseURL
@@ -43,12 +44,14 @@ extension NetworkService: TargetType {
             return "/3/movie/\(movieId)/reviews"
         case .fetchTrailerData(let movieId):
             return "/3/movie/\(movieId)/videos"
+        case .fetchGenreData:
+            return "/3/genre/movie/list"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .fetchAllMovieTitle, .fetchDetailData, .fetchReviewData, .fetchAllMoviePoster, .fetchTrailerData:
+        case .fetchAllMovieTitle, .fetchDetailData, .fetchReviewData, .fetchAllMoviePoster, .fetchTrailerData, .fetchGenreData:
             return .get
         }
     }
@@ -59,7 +62,7 @@ extension NetworkService: TargetType {
             return .requestParameters(parameters: ["api_key" : apiKey, "sort_by" : "popularity.desc", "include_adult" : "false", "include_video" : "true", "page" : page], encoding: URLEncoding.queryString)
         case .fetchAllMoviePoster:
             return .requestPlain
-        case .fetchDetailData, .fetchTrailerData:
+        case .fetchDetailData, .fetchTrailerData, .fetchGenreData:
             return .requestParameters(parameters: ["api_key" : apiKey], encoding: URLEncoding.queryString)
         case .fetchReviewData(_, let page):
             return .requestParameters(parameters: ["api_key" : apiKey, "" : 1], encoding: URLEncoding.queryString)
@@ -68,7 +71,7 @@ extension NetworkService: TargetType {
     
     var headers: [String : String]? {
         switch self {
-        case .fetchAllMovieTitle, .fetchDetailData, .fetchReviewData, .fetchTrailerData:
+        case .fetchAllMovieTitle, .fetchDetailData, .fetchReviewData, .fetchTrailerData, .fetchGenreData:
             return ["Content-Type" : "application/json"]
         case .fetchAllMoviePoster:
             return ["Content-Type" : "image/jpeg"]

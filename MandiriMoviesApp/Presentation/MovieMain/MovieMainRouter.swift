@@ -42,8 +42,10 @@ class MovieMainRouter: MovieMainRouterProtocol {
         let nextRouter = MovieDetailRouter.start()
         guard let vc = nextRouter.entry else { return }
         vc.presenter?.didPassedMovieData(id: id, title: title, posterImage: poster)
-        vc.modalPresentationStyle = .overFullScreen
-        entry?.present(vc, animated: true)
+        
+        let navigationVc = UINavigationController(rootViewController: vc)
+        navigationVc.modalPresentationStyle = .overFullScreen
+        entry?.present(navigationVc, animated: true)
     }
     
 }

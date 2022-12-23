@@ -35,7 +35,7 @@ class MovieDetailInteractor: MovieDetailInteractorProtocol {
                     genresData.append(genres[i]["name"].string ?? "")
                 }
                 
-                completion(MovieDetail(synopsis: synopsis, genres: genresData, homepage: homepage))
+                completion(MovieDetail(id: movieId, synopsis: synopsis, genres: genresData, homepage: homepage))
             case .failure(let error):
                 print(error)
             }

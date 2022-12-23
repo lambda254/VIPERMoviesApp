@@ -8,6 +8,7 @@
 import Foundation
 
 struct MovieDetail {
+    let id: Int
     let synopsis: String
     let genres: [String]
     let homepage: String
