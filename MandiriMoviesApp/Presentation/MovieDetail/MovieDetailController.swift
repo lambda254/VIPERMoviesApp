@@ -155,7 +155,7 @@ class MovieDetailController: ASDKViewController<ASScrollNode> {
     }
     
     @objc func reviewButtonTapped() {
-        
+        presenter?.navigateToReview()
     }
     
     @objc func dismissButtonTapped() {

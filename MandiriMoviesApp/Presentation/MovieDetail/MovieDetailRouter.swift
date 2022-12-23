@@ -12,6 +12,8 @@ protocol MovieDetailRouterProtocol {
     var entry: MovieDetailPoint? { get }
     static func start() -> MovieDetailRouter
     
+    func navigateToReview()
+    
     func dismissView()
 }
 
@@ -38,5 +40,11 @@ class MovieDetailRouter: MovieDetailRouterProtocol {
     
     func dismissView() {
         entry?.dismiss(animated: true)
+    }
+    
+    func navigateToReview() {
+        let nextRouter = MovieReviewRouter.start()
+        guard let vc = nextRouter.entry else { return }
+        entry?.present(vc, animated: true)
     }
 }

@@ -15,6 +15,7 @@ protocol MovieDetailPresenterProtocol {
     
     func didPassedMovieData(id: Int, title: String, posterImage: UIImage)
     
+    func navigateToReview()
     func dismissView()
 }
 
@@ -37,6 +38,10 @@ class MovieDetailPresenter: MovieDetailPresenterProtocol {
     
     func dismissView() {
         router?.dismissView()
+    }
+    
+    func navigateToReview() {
+        router?.navigateToReview()
     }
     
 }

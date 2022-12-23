@@ -10,3 +10,4 @@ import TextureSwiftSupport
 
 typealias MovieMainPoint = MovieMainViewProtocol & ASDKViewController<ASScrollNode>
 typealias MovieDetailPoint = MovieDetailViewProtocol & ASDKViewController<ASScrollNode>
+typealias MovieReviewPoint = MovieReviewViewProtocol & ASDKViewController<ASScrollNode>
