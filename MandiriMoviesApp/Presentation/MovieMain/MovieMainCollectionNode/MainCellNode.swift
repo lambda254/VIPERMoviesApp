@@ -18,16 +18,43 @@ class MainCellNode: ASCellNode {
     
     let paragraph = NSMutableParagraphStyle()
     
+    private let loadingNode: ASDisplayNode = {
+        let node = ASDisplayNode()
+        
+        DispatchQueue.main.async {
+            let loadingSpinner: UIActivityIndicatorView = {
+                let loadingSpinner = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.medium)
+                loadingSpinner.translatesAutoresizingMaskIntoConstraints = false
+                loadingSpinner.hidesWhenStopped = true
+                return loadingSpinner
+            }()
+            loadingSpinner.startAnimating()
+            node.view.addSubview(loadingSpinner)
+        }
+        
+        return node
+    }()
+    
     let titleNode: ASTextNode = {
         let node = ASTextNode()
         return node
     }()
     
-    let posterNode: ASImageNode = {
+    
+    lazy var posterNode: ASImageNode = {
         let node = ASImageNode()
+        node.automaticallyManagesSubnodes = true
         node.style.height = ASDimensionMake(.fraction, 0.86)
         node.contentMode = .scaleAspectFit
         node.cornerRadius = 30
+        
+        node.layoutSpecBlock = {[unowned self] _,_ -> ASLayoutSpec in
+            return LayoutSpec {
+                InsetLayout(insets: UIEdgeInsets(top: 100, left: 70, bottom: 20, right: 0)) {
+                    loadingNode
+                }
+            }
+        }
         return node
     }()
     
@@ -48,6 +75,9 @@ class MainCellNode: ASCellNode {
         
         titleNode.attributedText = NSAttributedString(string: title, attributes: attrs)
         posterNode.image = poster
+        if poster.size != CGSize(width: 0, height: 0) {
+            loadingNode.isHidden = true
+        }
     }
     
     

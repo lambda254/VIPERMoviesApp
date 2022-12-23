@@ -9,7 +9,7 @@ import Foundation
 import TextureSwiftSupport
 
 protocol MainCollectionDelegate: AnyObject {
-    func fetchNewData()
+    func fetchNewMovies()
     func didCellTap(id: Int, title: String, poster: UIImage)
 }
 
@@ -18,8 +18,6 @@ class MainCollectionNode: ASCollectionNode {
     weak var collectionDelegate: MainCollectionDelegate?
     
     var data = [MovieMain]()
-        
-    var posterCounter = 0
     
     var doneReloading = false
     
@@ -44,18 +42,12 @@ extension MainCollectionNode: ASCollectionDelegate, ASCollectionDataSource {
     func collectionNode(_ collectionNode: ASCollectionNode, numberOfItemsInSection section: Int) -> Int {
         return data.count
     }
-        func collectionNode(_ collectionNode: ASCollectionNode, nodeBlockForItemAt indexPath: IndexPath) -> ASCellNodeBlock {
-            let cellNodeBlock = {[self] () -> ASCellNode in
-                let cellNode = MainCellNode(movieId: data[indexPath.row].id, title: data[indexPath.row].title, poster: data[indexPath.row].posterImage)
-                return cellNode
-            }
-            return cellNodeBlock
+    func collectionNode(_ collectionNode: ASCollectionNode, nodeBlockForItemAt indexPath: IndexPath) -> ASCellNodeBlock {
+        let cellNodeBlock = {[self] () -> ASCellNode in
+            let cellNode = MainCellNode(movieId: data[indexPath.row].id, title: data[indexPath.row].title, poster: data[indexPath.row].posterImage)
+            return cellNode
         }
-    func collectionView(_ collectionView: ASCollectionView, willDisplay node: ASCellNode, forItemAt indexPath: IndexPath) {
-        if (indexPath.row == data.count - 1) && doneReloading {
-            collectionDelegate?.fetchNewData()
-            doneReloading = false
-        }
+        return cellNodeBlock
     }
     func collectionNode(_ collectionNode: ASCollectionNode, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionNode.nodeForItem(at: indexPath) as? MainCellNode
@@ -65,5 +57,11 @@ extension MainCollectionNode: ASCollectionDelegate, ASCollectionDataSource {
         collectionDelegate?.didCellTap(id: movieId ?? 0, title: title ?? "", poster: posterImage ?? UIImage())
     }
     
+    func collectionNode(_ collectionNode: ASCollectionNode, willDisplayItemWith node: ASCellNode) {
+        let cell = node as? MainCellNode
+        if cell?.movieId == data.last?.id {
+            collectionDelegate?.fetchNewMovies()
+        }
+    }
 }
 

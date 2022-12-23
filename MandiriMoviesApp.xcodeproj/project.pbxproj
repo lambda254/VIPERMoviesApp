@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6987C78964B5A70F58842153 /* Pods_MandiriMoviesApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73AA29FBB8AE0B500FD8DD7 /* Pods_MandiriMoviesApp.framework */; };
+		B575A98E2955A878000984BA /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B575A98D2955A878000984BA /* NetworkHelper.swift */; };
 		B5C7A25F2954B5520087586F /* MovieDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C7A25E2954B5520087586F /* MovieDetailController.swift */; };
 		B5C7A2612954B92F0087586F /* MovieDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C7A2602954B92F0087586F /* MovieDetailView.swift */; };
 		B5C7A2632954BAC90087586F /* MovieDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C7A2622954BAC90087586F /* MovieDetailRouter.swift */; };
@@ -50,6 +51,7 @@
 
 /* Begin PBXFileReference section */
 		46ED7C5907D8D9DB8A2A4195 /* Pods-MandiriMoviesApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MandiriMoviesApp.debug.xcconfig"; path = "Target Support Files/Pods-MandiriMoviesApp/Pods-MandiriMoviesApp.debug.xcconfig"; sourceTree = "<group>"; };
+		B575A98D2955A878000984BA /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		B5C7A25E2954B5520087586F /* MovieDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailController.swift; sourceTree = "<group>"; };
 		B5C7A2602954B92F0087586F /* MovieDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailView.swift; sourceTree = "<group>"; };
 		B5C7A2622954BAC90087586F /* MovieDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailRouter.swift; sourceTree = "<group>"; };
@@ -122,6 +124,14 @@
 				BB089148AACE5A5AE2E60730 /* Pods-MandiriMoviesApp.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		B575A98C2955A869000984BA /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				B575A98D2955A878000984BA /* NetworkHelper.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		B5C7A25D2954B2FF0087586F /* MovieDetail */ = {
@@ -250,6 +260,7 @@
 		B5F578472954A5F700B09608 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				B575A98C2955A869000984BA /* Helper */,
 				B5C7A2642954BCE00087586F /* Global */,
 				B5F5784B2954A64900B09608 /* Config */,
 				B5F578482954A5FD00B09608 /* Service */,
@@ -420,6 +431,7 @@
 				B5C7A268295531420087586F /* MovieDetailEntity.swift in Sources */,
 				B5C7A28E295566100087586F /* GenreMainInteractor.swift in Sources */,
 				B5C7A27F295550560087586F /* ReviewTableNode.swift in Sources */,
+				B575A98E2955A878000984BA /* NetworkHelper.swift in Sources */,
 				B5C7A28C295566100087586F /* GenreMainView.swift in Sources */,
 				B5F5783A29549B8500B09608 /* MovieMainRouter.swift in Sources */,
 				B5F5783D29549B9900B09608 /* MovieMainEntity.swift in Sources */,

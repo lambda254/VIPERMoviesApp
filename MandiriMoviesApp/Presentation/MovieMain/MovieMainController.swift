@@ -14,11 +14,26 @@ class MovieMainController: ASDKViewController<ASScrollNode> {
     
     private let movieCollectionNode = MainCollectionNode()
     
+    private var isLoading = true
+    
     private let rootNode: ASScrollNode = {
         let node = ASScrollNode()
         node.automaticallyManagesSubnodes = true
         node.automaticallyManagesContentSize = true
         node.backgroundColor = .white
+        return node
+    }()
+    
+    private let loadingNode: ASDisplayNode = {
+        let node = ASDisplayNode()
+        let loadingSpinner: UIActivityIndicatorView = {
+            let loadingSpinner = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.medium)
+            loadingSpinner.translatesAutoresizingMaskIntoConstraints = false
+            loadingSpinner.hidesWhenStopped = true
+            return loadingSpinner
+        }()
+        loadingSpinner.startAnimating()
+        node.view.addSubview(loadingSpinner)
         return node
     }()
 
@@ -28,7 +43,9 @@ class MovieMainController: ASDKViewController<ASScrollNode> {
         rootNode.layoutSpecBlock = {[unowned self] _,_ -> ASLayoutSpec in
             return LayoutSpec {
                 InsetLayout(insets: UIEdgeInsets(top: 90, left: 16, bottom: 0, right: 16)) {
-                    movieCollectionNode
+                    CenterLayout(centeringOptions: .X) {
+                        isLoading ? loadingNode : movieCollectionNode
+                    }
                 }
             }
         }
@@ -55,6 +72,8 @@ extension MovieMainController: MovieMainViewProtocol {
     func update(with movies: [MovieMain]) {
         movieCollectionNode.data = movies
         movieCollectionNode.reloadData()
+        rootNode.setNeedsLayout()
+        isLoading = false
     }
     
     func update(title: String) {
@@ -65,13 +84,12 @@ extension MovieMainController: MovieMainViewProtocol {
 
 extension MovieMainController: MainCollectionDelegate {
     
-    func fetchNewData() {
-        
+    func fetchNewMovies() {
+        presenter?.fetchNewMovies()
     }
     
     func didCellTap(id: Int, title: String, poster: UIImage) {
         presenter?.navigateToDetail(id: id, title: title, poster: poster)
     }
-    
     
 }
