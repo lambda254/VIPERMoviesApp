@@ -12,7 +12,7 @@ import SwiftyJSON
 protocol MovieMainInteractorProtocol {
     var presenter: MovieMainPresenter? {get set}
     
-    func getMovies()
+    func getMovies(genreId: Int)
     func getPosterImage(imageString: String, completion: @escaping (UIImage) -> Void)
 }
 
@@ -21,9 +21,9 @@ class MovieMainInteractor: MovieMainInteractorProtocol {
     
     private var networkProvider = MoyaProvider<NetworkService>()
     
-    func getMovies() {
+    func getMovies(genreId: Int) {
         var data = [MovieMain]()
-        networkProvider.request(.fetchAllMovieTitle(page: 1)) {[self] result in
+        networkProvider.request(.fetchAllMovieTitle(page: 1, genreId: genreId)) {[self] result in
             switch result {
             case .success(let response):
                 let json = try! JSON(data: response.data)

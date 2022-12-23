@@ -9,7 +9,5 @@ import Foundation
 
 struct GenreMain {
     let id: Int
-    let synopsis: String
-    let genres: [String]
-    let homepage: String
+    let title: String
 }

@@ -12,25 +12,22 @@ class GenreCellNode: ASCellNode {
         
     let paragraph = NSMutableParagraphStyle()
     
+    var id: Int?
+    
     let titleNode: ASTextNode = {
         let node = ASTextNode()
         return node
     }()
     
-    let posterNode: ASImageNode = {
-        let node = ASImageNode()
-        node.style.height = ASDimensionMake(.fraction, 0.86)
-        node.contentMode = .scaleAspectFit
-        node.cornerRadius = 30
-        return node
-    }()
-    
-    init(title: String) {
+    init(title: String, id: Int) {
+        self.id = id
         super.init()
         automaticallyManagesSubnodes = true
-        style.width = ASDimensionMake(160)
-        style.height = ASDimensionMake(300)
+        style.width = ASDimensionMake(150)
+        style.height = ASDimensionMake(150)
         paragraph.alignment = NSTextAlignment.center
+        backgroundColor = .gray
+        cornerRadius = 10
 
         let attrs = [
             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: .bold),
@@ -40,12 +37,11 @@ class GenreCellNode: ASCellNode {
         titleNode.attributedText = NSAttributedString(string: title, attributes: attrs)
     }
     
-    
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         return LayoutSpec {
             CenterLayout(centeringOptions: .X) {
                 InsetLayout(insets: UIEdgeInsets(top: 10, left: 0, bottom: 20, right: 0)) {
-                    VStackLayout {
+                    CenterLayout {
                         titleNode
                     }
                 }

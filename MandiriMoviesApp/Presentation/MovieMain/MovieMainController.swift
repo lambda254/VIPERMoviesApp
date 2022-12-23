@@ -27,7 +27,7 @@ class MovieMainController: ASDKViewController<ASScrollNode> {
         setupDelegate()
         rootNode.layoutSpecBlock = {[unowned self] _,_ -> ASLayoutSpec in
             return LayoutSpec {
-                InsetLayout(insets: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)) {
+                InsetLayout(insets: UIEdgeInsets(top: 90, left: 16, bottom: 0, right: 16)) {
                     movieCollectionNode
                 }
             }
@@ -37,6 +37,7 @@ class MovieMainController: ASDKViewController<ASScrollNode> {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         node.view.contentInsetAdjustmentBehavior = .never
+        navigationController?.navigationBar.tintColor = .black
     }
     
     required init?(coder: NSCoder) {
@@ -56,8 +57,8 @@ extension MovieMainController: MovieMainViewProtocol {
         movieCollectionNode.reloadData()
     }
     
-    func update(with errors: String) {
-        
+    func update(title: String) {
+        self.title = title
     }
     
 }

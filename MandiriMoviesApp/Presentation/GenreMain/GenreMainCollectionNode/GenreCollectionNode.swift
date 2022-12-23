@@ -9,14 +9,14 @@ import Foundation
 import TextureSwiftSupport
 
 protocol GenreCollectionDelegate: AnyObject {
-    func didCellTap(id: Int, title: String, poster: UIImage)
+    func didCellTap(id: Int, title: String)
 }
 
 class GenreCollectionNode: ASCollectionNode {
     
-    weak var collectionDelegate: MainCollectionDelegate?
+    weak var collectionDelegate: GenreCollectionDelegate?
     
-    var data = [MovieMain]()
+    var data = [GenreMain]()
     
     var posterCounter = 0
     
@@ -41,27 +41,22 @@ class GenreCollectionNode: ASCollectionNode {
 
 extension GenreCollectionNode: ASCollectionDelegate, ASCollectionDataSource {
     func collectionNode(_ collectionNode: ASCollectionNode, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return data.count
     }
+    
     func collectionNode(_ collectionNode: ASCollectionNode, nodeBlockForItemAt indexPath: IndexPath) -> ASCellNodeBlock {
         let cellNodeBlock = {[self] () -> ASCellNode in
-            let cellNode = GenreCellNode(title: "asfafafaf")
+            let cellNode = GenreCellNode(title: data[indexPath.row].title, id: data[indexPath.row].id)
             return cellNode
         }
         return cellNodeBlock
     }
-    func collectionView(_ collectionView: ASCollectionView, willDisplay node: ASCellNode, forItemAt indexPath: IndexPath) {
-        if (indexPath.row == data.count - 1) && doneReloading {
-            collectionDelegate?.fetchNewData()
-            doneReloading = false
-        }
-    }
-    func collectionNode(_ collectionNode: ASCollectionNode, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionNode.nodeForItem(at: indexPath) as? MainCellNode
-        let movieId = cell?.movieId
-        let title = cell?.title
-        let posterImage = cell?.poster
-        collectionDelegate?.didCellTap(id: movieId ?? 0, title: title ?? "", poster: posterImage ?? UIImage())
-    }
     
+    func collectionNode(_ collectionNode: ASCollectionNode, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionNode.nodeForItem(at: indexPath) as? GenreCellNode
+        guard let title = cell?.titleNode.attributedText?.string else { return }
+        guard let id = cell?.id else { return }
+        collectionDelegate?.didCellTap(id: id, title: title)
+    }
 }
+

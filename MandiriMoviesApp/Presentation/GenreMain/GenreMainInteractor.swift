@@ -12,8 +12,7 @@ import UIKit
 
 protocol GenreMainInteractorProtocol {
     var presenter: GenreMainPresenter? {get set}
-    func getDetailMovie(movieId: Int, completion: @escaping (GenreMain) -> Void)
-    func getTrailerMovie(movieId: Int, completion: @escaping (String) -> Void)
+    func getGenreMovie(completion: @escaping ([GenreMain]) -> Void)
 }
 
 class GenreMainInteractor: GenreMainInteractorProtocol {
@@ -21,43 +20,26 @@ class GenreMainInteractor: GenreMainInteractorProtocol {
     
     private var networkProvider = MoyaProvider<NetworkService>()
     
-    func getDetailMovie(movieId: Int, completion: @escaping (GenreMain) -> Void){
-        var genresData = [String]()
-        networkProvider.request(.fetchDetailData(movieId: movieId)) { result in
+    func getGenreMovie(completion: @escaping ([GenreMain]) -> Void) {
+        var data = [GenreMain]()
+        networkProvider.request(.fetchGenreData) { result in
             switch result {
             case .success(let response):
                 let json = try! JSON(data: response.data)
-                let synopsis = json["overview"].string ?? ""
-                let genres = json["genres"]
-                let homepage = json["homepage"].string ?? ""
+                let jsonGenres = json["genres"]
                 
-                for i in 0 ..< genres.count {
-                    genresData.append(genres[i]["name"].string ?? "")
+                for i in 0 ..< jsonGenres.count {
+                    let title = jsonGenres[i]["name"].stringValue
+                    let id = jsonGenres[i]["id"].intValue
+                    data.append(GenreMain(id: id, title: title))
                 }
                 
-                completion(GenreMain(id: movieId, synopsis: synopsis, genres: genresData, homepage: homepage))
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-    
-    func getTrailerMovie(movieId: Int, completion: @escaping (String) -> Void){
-        var data = ""
-        networkProvider.request(.fetchTrailerData(movieId: movieId)) { result in
-            switch result {
-            case .success(let response):
-                let json = try! JSON(data: response.data)
-                let jsonResult = json["results"]
-                for i in 0 ..< jsonResult.count {
-                    if jsonResult[i]["type"].string == "Trailer" {
-                        data = jsonResult[i]["key"].string ?? ""
-                    }
-                }
                 completion(data)
             case .failure(let error):
                 print(error)
             }
         }
     }
+    
+    
 }

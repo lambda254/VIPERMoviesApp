@@ -9,7 +9,7 @@ import Foundation
 import Moya
 
 enum NetworkService {
-    case fetchAllMovieTitle(page: Int)
+    case fetchAllMovieTitle(page: Int, genreId: Int)
     case fetchAllMoviePoster(image: String)
     case fetchDetailData(movieId: Int)
     case fetchReviewData(movieId: Int, page: Int)
@@ -58,8 +58,8 @@ extension NetworkService: TargetType {
     
     var task: Moya.Task {
         switch self {
-        case .fetchAllMovieTitle(let page):
-            return .requestParameters(parameters: ["api_key" : apiKey, "sort_by" : "popularity.desc", "include_adult" : "false", "include_video" : "true", "page" : page], encoding: URLEncoding.queryString)
+        case .fetchAllMovieTitle(let page, let genreId):
+            return .requestParameters(parameters: ["api_key" : apiKey, "with_genres" : genreId , "sort_by" : "popularity.desc", "include_adult" : "false", "include_video" : "true", "page" : page], encoding: URLEncoding.queryString)
         case .fetchAllMoviePoster:
             return .requestPlain
         case .fetchDetailData, .fetchTrailerData, .fetchGenreData:

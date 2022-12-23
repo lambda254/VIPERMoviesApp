@@ -12,7 +12,7 @@ protocol GenreMainRouterProtocol {
     var entry: GenreMainPoint? { get }
     static func start() -> GenreMainRouter
     
-    func navigateToReview(movieId: Int)
+    func navigateToMovieMain(genreId: Int, title: String)
     
     func dismissView()
 }
@@ -42,10 +42,10 @@ class GenreMainRouter: GenreMainRouterProtocol {
         entry?.dismiss(animated: true)
     }
     
-    func navigateToReview(movieId: Int) {
-        let nextRouter = MovieReviewRouter.start()
+    func navigateToMovieMain(genreId: Int, title: String) {
+        let nextRouter = MovieMainRouter.start()
         guard let vc = nextRouter.entry else { return }
-        vc.presenter?.didPassedMovieId(movieId: movieId)
+        vc.presenter?.didPassedGenreId(genreId: genreId, title: title)
         entry?.navigationController?.pushViewController(vc, animated: true)
     }
 }

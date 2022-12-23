@@ -13,38 +13,24 @@ protocol GenreMainPresenterProtocol {
     var interactor: GenreMainInteractorProtocol? {get set}
     var view: GenreMainViewProtocol? {get set}
     
-    func didPassedMovieData(id: Int, title: String, posterImage: UIImage)
+    func navigateToMovieMain(genreId: Int, title: String)
     
-    func navigateToReview()
-    func dismissView()
 }
 
 class GenreMainPresenter: GenreMainPresenterProtocol {
     var router: GenreMainRouter?
     
-    var interactor: GenreMainInteractorProtocol?
+    var interactor: GenreMainInteractorProtocol? {
+        didSet {
+            interactor?.getGenreMovie(completion: {[unowned self] data in
+                view?.update(with: data)
+            })
+        }
+    }
     
     var view: GenreMainViewProtocol?
     
-    var movieId: Int?
-
-    func didPassedMovieData(id: Int, title: String, posterImage: UIImage){
-        self.movieId = id
-        view?.update(title: title, posterImage: posterImage)
-        interactor?.getDetailMovie(movieId: id, completion: {[unowned self] data in
-            view?.update(with: data)
-        })
-        interactor?.getTrailerMovie(movieId: id, completion: { [unowned self] data in
-            view?.update(trailer: data)
-        })
+    func navigateToMovieMain(genreId: Int, title: String) {
+        router?.navigateToMovieMain(genreId: genreId, title: title)
     }
-    
-    func dismissView() {
-        router?.dismissView()
-    }
-    
-    func navigateToReview() {
-        router?.navigateToReview(movieId: movieId ?? 0)
-    }
-    
 }
