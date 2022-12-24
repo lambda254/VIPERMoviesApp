@@ -36,6 +36,19 @@ class MovieMainController: ASDKViewController<ASScrollNode> {
         node.view.addSubview(loadingSpinner)
         return node
     }()
+    
+    private let loadingNode2: ASDisplayNode = {
+        let node = ASDisplayNode()
+        let loadingSpinner: UIActivityIndicatorView = {
+            let loadingSpinner = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.medium)
+            loadingSpinner.translatesAutoresizingMaskIntoConstraints = false
+            loadingSpinner.hidesWhenStopped = true
+            return loadingSpinner
+        }()
+        loadingSpinner.startAnimating()
+        node.view.addSubview(loadingSpinner)
+        return node
+    }()
 
     override init() {
         super.init(node: rootNode)
@@ -70,8 +83,10 @@ class MovieMainController: ASDKViewController<ASScrollNode> {
 extension MovieMainController: MovieMainViewProtocol {
     
     func update(with movies: [MovieMain]) {
-        movieCollectionNode.data = movies
-        movieCollectionNode.reloadData()
+        movieCollectionNode.data += movies
+        UIView.performWithoutAnimation {
+            movieCollectionNode.reloadData()
+        }
         rootNode.setNeedsLayout()
         isLoading = false
     }

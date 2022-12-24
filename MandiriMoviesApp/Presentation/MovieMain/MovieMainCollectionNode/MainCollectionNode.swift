@@ -20,7 +20,7 @@ class MainCollectionNode: ASCollectionNode {
     var data = [MovieMain]()
     
     var doneReloading = false
-    
+        
     private let flowLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -60,7 +60,7 @@ extension MainCollectionNode: ASCollectionDelegate, ASCollectionDataSource {
     func collectionNode(_ collectionNode: ASCollectionNode, willDisplayItemWith node: ASCellNode) {
         let cell = node as? MainCellNode
         if cell?.movieId == data.last?.id {
-//            collectionDelegate?.fetchNewMovies()
+            collectionDelegate?.fetchNewMovies()
         }
     }
 }

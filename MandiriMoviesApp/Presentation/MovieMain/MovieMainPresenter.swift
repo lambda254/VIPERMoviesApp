@@ -13,7 +13,6 @@ protocol MovieMainPresenterProtocol {
     var interactor: MovieMainInteractorProtocol? {get set}
     var view: MovieMainViewProtocol? {get set}
         
-    func didFetchMovies(with result: Result<[MovieMain], Error>)
     func didPassedGenreId(genreId: Int, title: String)
     
     func navigateToDetail(id: Int, title: String, poster: UIImage)
@@ -31,19 +30,12 @@ class MovieMainPresenter: MovieMainPresenterProtocol {
     
     var genreId: Int?
     
-    func didFetchMovies(with result: Result<[MovieMain], Error>) {
-        switch result {
-        case .success(let movies):
-            view?.update(with: movies)
-        case .failure(let errors):
-            print(errors)
-        }
-    }
-    
     func didPassedGenreId(genreId: Int, title: String) {
         self.genreId = genreId
-        interactor?.getMovies(genreId: genreId, page: page)
         view?.update(title: title)
+        interactor?.getMovies(genreId: genreId, page: page, completion: {[unowned self] data in
+            view?.update(with: data)
+        })
     }
     
     func navigateToDetail(id: Int, title: String, poster: UIImage) {
@@ -52,7 +44,9 @@ class MovieMainPresenter: MovieMainPresenterProtocol {
     
     func fetchNewMovies() {
         page += 1
-        interactor?.getMovies(genreId: genreId ?? 0, page: page)
+        interactor?.getMovies(genreId: genreId ?? 0, page: page, completion: {[unowned self] data in
+            view?.update(with: data)
+        })
     }
     
 }
