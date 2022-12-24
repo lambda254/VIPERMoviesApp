@@ -8,7 +8,7 @@
 import Foundation
 import TextureSwiftSupport
 
-protocol MovieMainViewProtocol {
+protocol MovieMainViewProtocol: AnyObject {
     var presenter: MovieMainPresenter? {get set}
     func update(with movies: [MovieMain])
     func update(title: String)

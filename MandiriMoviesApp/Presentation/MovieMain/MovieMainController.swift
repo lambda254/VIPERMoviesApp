@@ -70,6 +70,15 @@ class MovieMainController: ASDKViewController<ASScrollNode> {
         navigationController?.navigationBar.tintColor = .black
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        presenter?.router = nil
+    }
+    
+    deinit {
+        print("controller deinit")
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

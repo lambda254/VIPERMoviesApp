@@ -9,7 +9,7 @@ import Foundation
 import Moya
 import SwiftyJSON
 
-protocol MovieMainInteractorProtocol {
+protocol MovieMainInteractorProtocol: AnyObject {
     var presenter: MovieMainPresenter? {get set}
     
     func getMovies(genreId: Int, completion: @escaping ([MovieMain]) -> Void)
@@ -17,11 +17,15 @@ protocol MovieMainInteractorProtocol {
 }
 
 class MovieMainInteractor: MovieMainInteractorProtocol {
-    var presenter: MovieMainPresenter?
+    weak var presenter: MovieMainPresenter?
     
     private var networkProvider = MoyaProvider<NetworkService>()
     
     private var page = 0
+    
+    deinit {
+        print("interactor deinit")
+    }
     
     func getMovies(genreId: Int, completion: @escaping ([MovieMain]) -> Void) {
         var data = [MovieMain]()

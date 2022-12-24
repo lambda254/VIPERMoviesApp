@@ -8,8 +8,6 @@
 import Foundation
 import TextureSwiftSupport
 
-
-
 protocol MovieMainRouterProtocol {
     var entry: MovieMainController? { get }
     static func start() -> MovieMainRouter
@@ -36,6 +34,10 @@ class MovieMainRouter: MovieMainRouterProtocol {
         router.entry = view
         
         return router
+    }
+    
+    deinit {
+        print("router deinit")
     }
     
     func navigateToDetail(id: Int, title: String, poster: UIImage) {

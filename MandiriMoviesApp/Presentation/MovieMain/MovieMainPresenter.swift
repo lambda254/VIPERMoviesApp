@@ -24,9 +24,13 @@ class MovieMainPresenter: MovieMainPresenterProtocol {
     
     var interactor: MovieMainInteractorProtocol?
     
-    var view: MovieMainViewProtocol?
+    weak var view: MovieMainViewProtocol?
         
     var genreId: Int?
+    
+    deinit {
+        print("presenter deinit")
+    }
     
     func didPassedGenreId(genreId: Int, title: String) {
         self.genreId = genreId
