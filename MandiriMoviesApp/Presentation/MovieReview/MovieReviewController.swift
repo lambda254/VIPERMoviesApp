@@ -50,11 +50,12 @@ class MovieReviewController: ASDKViewController<ASScrollNode> {
     override init() {
         super.init(node: rootNode)
         self.title = "Review"
+        setupDelegate()
         rootNode.layoutSpecBlock = {[self] _,_ -> ASLayoutSpec in
             return LayoutSpec {
                 CenterLayout(centeringOptions: .X) {
                     InsetLayout(insets: UIEdgeInsets(top: 100, left: 0, bottom: 0, right: 0)) {
-                        isLoading ? loadingNode : reviewTableNode.data.isEmpty ? warningNode : reviewTableNode
+                        reviewTableNode
                     }
                 }
             }
@@ -75,16 +76,26 @@ class MovieReviewController: ASDKViewController<ASScrollNode> {
         navigationController?.setNavigationBarHidden(false, animated: false)
         navigationController?.navigationBar.tintColor = .black
     }
+    
+    func setupDelegate() {
+        reviewTableNode.tableDelegate = self
+    }
 
 }
 
 extension MovieReviewController: MovieReviewViewProtocol {
     
     func update(with review: [MovieReview]) {
-        reviewTableNode.data = review
+        reviewTableNode.data += review
         reviewTableNode.reloadData()
         rootNode.setNeedsLayout()
         isLoading.toggle()
     }
     
+}
+
+extension MovieReviewController: ReviewTableDelegate {
+    func fetchNewReviews() {
+        presenter?.fetchNewReviews()
+    }
 }

@@ -14,6 +14,8 @@ protocol MovieReviewPresenterProtocol {
     var view: MovieReviewViewProtocol? {get set}
     
     func didPassedMovieId(movieId: Int)
+    
+    func fetchNewReviews()
         
     func dismissView()
 }
@@ -32,8 +34,17 @@ class MovieReviewPresenter: MovieReviewPresenterProtocol {
     }
     
     func didPassedMovieId(movieId: Int) {
+        self.movieId = movieId
         interactor?.getReviewData(movieId: movieId, completion: {[unowned self] data in
             view?.update(with: data)
+        })
+    }
+    
+    func fetchNewReviews() {
+        interactor?.getReviewData(movieId: movieId ?? 0, completion: {[unowned self] data in
+            if !data.isEmpty {
+                view?.update(with: data)
+            }
         })
     }
     

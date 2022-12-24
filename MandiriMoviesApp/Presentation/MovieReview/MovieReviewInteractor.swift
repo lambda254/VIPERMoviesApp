@@ -22,9 +22,12 @@ class MovieReviewInteractor: MovieReviewInteractorProtocol {
     
     private var networkProvider = MoyaProvider<NetworkService>()
     
+    private var page = 0
+    
     func getReviewData(movieId: Int, completion: @escaping ([MovieReview]) -> Void) {
         var data = [MovieReview]()
-        networkProvider.request(.fetchReviewData(movieId: movieId, page: 1)) { result in
+        page += 1
+        networkProvider.request(.fetchReviewData(movieId: movieId, page: page)) { result in
             switch result {
             case .success(let response):
                 let json = try! JSON(data: response.data)

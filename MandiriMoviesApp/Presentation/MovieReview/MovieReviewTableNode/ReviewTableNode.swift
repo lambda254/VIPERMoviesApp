@@ -8,7 +8,13 @@
 import Foundation
 import TextureSwiftSupport
 
+protocol ReviewTableDelegate: AnyObject {
+    func fetchNewReviews()
+}
+
 class ReviewTableNode: ASTableNode {
+    
+    weak var tableDelegate: ReviewTableDelegate?
         
     var data = [MovieReview]()
     
@@ -40,9 +46,10 @@ extension ReviewTableNode: ASTableDelegate, ASTableDataSource {
     }
     
     func tableView(_ tableView: ASTableView, willDisplay node: ASCellNode, forRowAt indexPath: IndexPath) {
-        if indexPath.section == tableView.numberOfSections - 1 &&
-            indexPath.row == tableView.numberOfRows(inSection: indexPath.section) - 1 {
-//            reviewDelegate?.fetchNewData()
+        let cell = node as? ReviewCellNode
+        if cell?.indexPath?.row == data.count - 1 {
+            tableDelegate?.fetchNewReviews()
         }
     }
+    
 }

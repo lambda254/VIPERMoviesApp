@@ -65,7 +65,7 @@ extension NetworkService: TargetType {
         case .fetchDetailData, .fetchTrailerData, .fetchGenreData:
             return .requestParameters(parameters: ["api_key" : apiKey], encoding: URLEncoding.queryString)
         case .fetchReviewData(_, let page):
-            return .requestParameters(parameters: ["api_key" : apiKey, "" : 1], encoding: URLEncoding.queryString)
+            return .requestParameters(parameters: ["api_key" : apiKey, "page" : page], encoding: URLEncoding.queryString)
         }
     }
     
