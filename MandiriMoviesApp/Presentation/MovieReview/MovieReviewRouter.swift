@@ -9,19 +9,19 @@ import Foundation
 import UIKit
 
 protocol MovieReviewRouterProtocol {
-    var entry: MovieReviewPoint? { get }
+    var entry: MovieReviewController? { get }
     static func start() -> MovieReviewRouter
     
     func dismissView()
 }
 
 class MovieReviewRouter: MovieReviewRouterProtocol {
-    var entry: MovieReviewPoint?
+    var entry: MovieReviewController?
 
     static func start() -> MovieReviewRouter {
         let router = MovieReviewRouter()
         
-        var view: MovieReviewViewProtocol = MovieReviewController()
+        var view = MovieReviewController()
         let presenter = MovieReviewPresenter()
         let interactor = MovieReviewInteractor()
 
@@ -31,7 +31,7 @@ class MovieReviewRouter: MovieReviewRouterProtocol {
         presenter.view = view
         presenter.interactor = interactor
         
-        router.entry = view as? MovieReviewPoint
+        router.entry = view
         
         return router
     }

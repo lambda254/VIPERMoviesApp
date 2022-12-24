@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol GenreMainRouterProtocol {
-    var entry: GenreMainPoint? { get }
+    var entry: GenreMainController? { get }
     static func start() -> GenreMainRouter
     
     func navigateToMovieMain(genreId: Int, title: String)
@@ -18,12 +18,12 @@ protocol GenreMainRouterProtocol {
 }
 
 class GenreMainRouter: GenreMainRouterProtocol {
-    var entry: GenreMainPoint?
+    var entry: GenreMainController?
 
     static func start() -> GenreMainRouter {
         let router = GenreMainRouter()
         
-        var view: GenreMainViewProtocol = GenreMainController()
+        let view = GenreMainController()
         let presenter = GenreMainPresenter()
         let interactor = GenreMainInteractor()
 
@@ -33,7 +33,7 @@ class GenreMainRouter: GenreMainRouterProtocol {
         presenter.view = view
         presenter.interactor = interactor
         
-        router.entry = view as? GenreMainPoint
+        router.entry = view
         
         return router
     }

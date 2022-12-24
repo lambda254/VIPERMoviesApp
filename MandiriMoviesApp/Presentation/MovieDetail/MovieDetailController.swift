@@ -15,8 +15,6 @@ class MovieDetailController: ASDKViewController<ASScrollNode> {
         
     private let paragraph = NSMutableParagraphStyle()
             
-//    let reviewController: MovieReviewViewController
-//
     var ytPlayer = YTPlayerView()
     
     private let rootNode: ASScrollNode = {
@@ -143,9 +141,6 @@ class MovieDetailController: ASDKViewController<ASScrollNode> {
     override func viewDidLoad() {
         super.viewDidLoad()
         ytPlayer.frame = CGRect(x: 0, y: 0, width: node.frame.width * 0.92, height: node.frame.height * 0.24)
-//        DataManager.shared.movieTrailerClosure = { data in
-//            self.ytPlayer.load(withVideoId: data)
-//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

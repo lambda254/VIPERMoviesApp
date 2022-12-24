@@ -11,19 +11,19 @@ import TextureSwiftSupport
 
 
 protocol MovieMainRouterProtocol {
-    var entry: MovieMainPoint? { get }
+    var entry: MovieMainController? { get }
     static func start() -> MovieMainRouter
     
     func navigateToDetail(id: Int, title: String, poster: UIImage)
 }
 
 class MovieMainRouter: MovieMainRouterProtocol {
-    var entry: MovieMainPoint?
+    var entry: MovieMainController?
 
     static func start() -> MovieMainRouter {
         let router = MovieMainRouter()
         
-        var view: MovieMainViewProtocol = MovieMainController()
+        let view = MovieMainController()
         let presenter = MovieMainPresenter()
         let interactor = MovieMainInteractor()
         
@@ -33,7 +33,7 @@ class MovieMainRouter: MovieMainRouterProtocol {
         presenter.view = view
         presenter.interactor = interactor
         
-        router.entry = view as? MovieMainPoint
+        router.entry = view
         
         return router
     }

@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol MovieDetailRouterProtocol {
-    var entry: MovieDetailPoint? { get }
+    var entry: MovieDetailController? { get }
     static func start() -> MovieDetailRouter
     
     func navigateToReview(movieId: Int)
@@ -18,12 +18,12 @@ protocol MovieDetailRouterProtocol {
 }
 
 class MovieDetailRouter: MovieDetailRouterProtocol {
-    var entry: MovieDetailPoint?
+    var entry: MovieDetailController?
 
     static func start() -> MovieDetailRouter {
         let router = MovieDetailRouter()
         
-        var view: MovieDetailViewProtocol = MovieDetailController()
+        let view = MovieDetailController()
         let presenter = MovieDetailPresenter()
         let interactor = MovieDetailInteractor()
 
@@ -33,7 +33,7 @@ class MovieDetailRouter: MovieDetailRouterProtocol {
         presenter.view = view
         presenter.interactor = interactor
         
-        router.entry = view as? MovieDetailPoint
+        router.entry = view
         
         return router
     }
