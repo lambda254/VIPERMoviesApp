@@ -55,7 +55,7 @@ class MovieReviewController: ASDKViewController<ASScrollNode> {
             return LayoutSpec {
                 CenterLayout(centeringOptions: .X) {
                     InsetLayout(insets: UIEdgeInsets(top: 100, left: 0, bottom: 0, right: 0)) {
-                        reviewTableNode
+                        isLoading ? loadingNode : reviewTableNode.data.isEmpty ? warningNode : reviewTableNode
                     }
                 }
             }

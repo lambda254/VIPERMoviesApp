@@ -35,9 +35,7 @@ class MovieReviewPresenter: MovieReviewPresenterProtocol {
     
     func didPassedMovieId(movieId: Int) {
         self.movieId = movieId
-        interactor?.getReviewData(movieId: movieId, completion: {[unowned self] data in
-            view?.update(with: data)
-        })
+        fetchNewReviews()
     }
     
     func fetchNewReviews() {
