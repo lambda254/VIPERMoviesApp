@@ -31,9 +31,7 @@ class MovieMainPresenter: MovieMainPresenterProtocol {
     func didPassedGenreId(genreId: Int, title: String) {
         self.genreId = genreId
         view?.update(title: title)
-        interactor?.getMovies(genreId: genreId, completion: {[unowned self] data in
-            view?.update(with: data)
-        })
+        fetchNewMovies()
     }
     
     func navigateToDetail(id: Int, title: String, poster: UIImage) {
