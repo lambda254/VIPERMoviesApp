@@ -25,15 +25,13 @@ class MovieMainPresenter: MovieMainPresenterProtocol {
     var interactor: MovieMainInteractorProtocol?
     
     var view: MovieMainViewProtocol?
-    
-    var page = 1
-    
+        
     var genreId: Int?
     
     func didPassedGenreId(genreId: Int, title: String) {
         self.genreId = genreId
         view?.update(title: title)
-        interactor?.getMovies(genreId: genreId, page: page, completion: {[unowned self] data in
+        interactor?.getMovies(genreId: genreId, completion: {[unowned self] data in
             view?.update(with: data)
         })
     }
@@ -43,8 +41,7 @@ class MovieMainPresenter: MovieMainPresenterProtocol {
     }
     
     func fetchNewMovies() {
-        page += 1
-        interactor?.getMovies(genreId: genreId ?? 0, page: page, completion: {[unowned self] data in
+        interactor?.getMovies(genreId: genreId ?? 0, completion: {[unowned self] data in
             view?.update(with: data)
         })
     }
