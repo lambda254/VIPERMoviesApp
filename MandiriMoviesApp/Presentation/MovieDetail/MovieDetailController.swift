@@ -55,7 +55,7 @@ class MovieDetailController: ASDKViewController<ASScrollNode> {
         let node = ASImageNode()
         node.style.width = ASDimensionMake(200)
         node.style.height = ASDimensionMake(300)
-        node.backgroundColor = .red
+        node.backgroundColor = .clear
         node.cornerRadius = 30
         node.contentMode = .scaleAspectFit
         return node

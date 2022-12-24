@@ -27,7 +27,7 @@ class MovieReviewInteractor: MovieReviewInteractorProtocol {
     func getReviewData(movieId: Int, completion: @escaping ([MovieReview]) -> Void) {
         var data = [MovieReview]()
         page += 1
-        networkProvider.request(.fetchReviewData(movieId: movieId, page: page)) { result in
+        networkProvider.request(.fetchReviewData(movieId: movieId, page: page)) {[unowned self] result in
             switch result {
             case .success(let response):
                 let json = try! JSON(data: response.data)
@@ -36,7 +36,10 @@ class MovieReviewInteractor: MovieReviewInteractorProtocol {
                 for i in 0 ..< jsonResult.count {
                     data.append(MovieReview(username: jsonResult[i]["author"].string ?? "", review: jsonResult[i]["content"].string ?? ""))
                 }
-                completion(data)
+                
+                if page > 2 && !data.isEmpty || page == 1 {
+                    completion(data)
+                }
             case .failure(let error):
                 print(error)
             }

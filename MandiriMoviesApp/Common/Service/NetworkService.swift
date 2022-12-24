@@ -7,6 +7,7 @@
 
 import Foundation
 import Moya
+import Alamofire
 
 enum NetworkService {
     case fetchAllMovieTitle(page: Int, genreId: Int)

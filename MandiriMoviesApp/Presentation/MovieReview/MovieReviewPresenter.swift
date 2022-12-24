@@ -40,9 +40,7 @@ class MovieReviewPresenter: MovieReviewPresenterProtocol {
     
     func fetchNewReviews() {
         interactor?.getReviewData(movieId: movieId ?? 0, completion: {[unowned self] data in
-            if !data.isEmpty {
-                view?.update(with: data)
-            }
+            view?.update(with: data)
         })
     }
     
