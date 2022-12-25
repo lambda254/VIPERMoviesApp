@@ -28,6 +28,10 @@ class ReviewCellNode: ASCellNode {
         node.cornerRadius = 20
         node.borderWidth = 1
         node.borderColor = randomColor
+        node.shadowOffset = CGSize(width: 10, height: 10)
+        node.shadowColor = UIColor.black.cgColor
+        node.shadowRadius = 10
+        node.shadowOpacity = 0.3
         
         node.layoutSpecBlock = {[self] _,_ -> ASLayoutSpec in
             return LayoutSpec {
@@ -57,7 +61,7 @@ class ReviewCellNode: ASCellNode {
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         return LayoutSpec {
-            InsetLayout(insets: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)) {
+            InsetLayout(insets: UIEdgeInsets(top: 30, left: 10, bottom: 30, right: 10)) {
                 backgroundContainer
             }
             
