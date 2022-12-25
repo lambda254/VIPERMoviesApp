@@ -12,9 +12,11 @@ import YouTubeiOSPlayerHelper
 class MovieDetailController: ASDKViewController<ASScrollNode> {
     
     var presenter: MovieDetailPresenter?
-        
+    
     private let paragraph = NSMutableParagraphStyle()
-            
+    
+    private let collectionNode = DetailGenreCollectionNode()
+    
     var ytPlayer = YTPlayerView()
     
     private let rootNode: ASScrollNode = {
@@ -27,7 +29,7 @@ class MovieDetailController: ASDKViewController<ASScrollNode> {
     
     private let titleNode: ASTextNode = {
         let node = ASTextNode()
-        node.style.width = ASDimensionMake(150)
+        node.style.width = ASDimensionMake(.fraction, 1)
         return node
     }()
     
@@ -44,30 +46,23 @@ class MovieDetailController: ASDKViewController<ASScrollNode> {
         return node
     }()
     
-    private let genreNode: ASTextNode = {
-        let node = ASTextNode()
-        node.style.width = ASDimensionMake(150)
-        //        node.style.height = ASDimensionMake(180)
-        return node
-    }()
-    
     private let posterNode: ASImageNode = {
         let node = ASImageNode()
-        node.style.width = ASDimensionMake(200)
+        node.style.width = ASDimensionMake(.fraction, 1)
+        node.contentsScale = 0.7
         node.style.height = ASDimensionMake(300)
         node.backgroundColor = .clear
-        node.cornerRadius = 30
-        node.contentMode = .scaleAspectFit
+        node.contentMode = .scaleAspectFill
         return node
     }()
     
     private let reviewButton: ASButtonNode = {
         let node = ASButtonNode()
-        node.backgroundColor = .black
+        node.backgroundColor = .appBlue
         node.style.width = ASDimensionMake(.fraction, 1)
         node.style.height = ASDimensionMake(40)
         node.cornerRadius = 10
-        node.setAttributedTitle(NSAttributedString(string: "See Reviews", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white]), for: .normal)
+        node.setAttributedTitle(NSAttributedString(string: "See Reviews", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13, weight: .bold)]), for: .normal)
         node.addTarget(nil, action: #selector(reviewButtonTapped), forControlEvents: .touchUpInside)
         return node
     }()
@@ -77,7 +72,12 @@ class MovieDetailController: ASDKViewController<ASScrollNode> {
         node.backgroundColor = .clear
         node.style.width = ASDimensionMake(50)
         node.style.height = ASDimensionMake(50)
-        node.setImage(UIImage(systemName: "xmark"), for: .normal)
+        node.setImage(UIImage(systemName: "arrow.backward.circle.fill"), for: .normal)
+        node.imageNode.style.width = ASDimensionMake(40)
+        node.imageNode.style.height = ASDimensionMake(40)
+        node.imageNode.cornerRadius = 20
+        node.imageNode.backgroundColor = .appBlue
+        node.imageNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(.appYellow)
         node.addTarget(nil, action: #selector(dismissButtonTapped), forControlEvents: .touchUpInside)
         return node
     }()
@@ -103,20 +103,25 @@ class MovieDetailController: ASDKViewController<ASScrollNode> {
         
         rootNode.layoutSpecBlock = {[self] _,_ -> ASLayoutSpec in
             return LayoutSpec {
-                InsetLayout(insets: UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)) {
-                    VStackLayout {
-                        dismissButton
-                        InsetLayout(insets: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)) {
-                            VStackLayout(spacing: 10) {
-                                HStackLayout(spacing: 10) {
-                                    posterNode
-                                    VStackLayout(spacing: 5) {
-                                        titleNode
-                                        genreNode
-                                        SpacerLayout()
-                                        reviewButton
-                                    }
+                InsetLayout(insets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)) {
+                    VStackLayout(spacing: 20) {
+                        OverlayLayout {
+                            posterNode
+                        } overlay: {
+                            InsetLayout(insets: UIEdgeInsets(top: 240, left: 0, bottom: 0, right: 330)) {
+                                ZStackLayout {
+                                    dismissButton
                                 }
+                            }
+                        }
+                        VStackLayout {
+                            InsetLayout(insets: UIEdgeInsets(top: 0, left: 16, bottom: 5, right: 16)) {
+                                titleNode
+                            }
+                            InsetLayout(insets: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)) {
+                                collectionNode
+                            }
+                            InsetLayout(insets: UIEdgeInsets(top: 0, left: 16, bottom: 50, right: 16)) {
                                 VStackLayout(spacing: 10) {
                                     synopsisTitleNode
                                     synopsisDescNode
@@ -124,9 +129,14 @@ class MovieDetailController: ASDKViewController<ASScrollNode> {
                                         trailerTitleNode
                                         youtubeVideoNode
                                     }
+                                    InsetLayout(insets: UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)) {
+                                        reviewButton
+                                    }
                                 }
                             }
+                            
                         }
+                        
                     }
                 }
                 
@@ -167,7 +177,7 @@ extension MovieDetailController: MovieDetailViewProtocol {
     
     func update(title: String, posterImage: UIImage) {
         let attrsTitle = [
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 27, weight: .bold),
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 25, weight: .bold),
             NSAttributedString.Key.paragraphStyle: paragraph
         ]
         posterNode.image = posterImage
@@ -175,9 +185,8 @@ extension MovieDetailController: MovieDetailViewProtocol {
     }
     
     func update(with detail: MovieDetail) {
-        genreNode.attributedText = NSAttributedString(string: detail.genres.joined(separator: ", "), attributes: [
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15)
-        ])
+        collectionNode.data = detail.genres
+        collectionNode.reloadData()
         synopsisDescNode.attributedText = NSAttributedString(string: detail.synopsis, attributes: [
             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15)
         ])
