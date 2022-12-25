@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6987C78964B5A70F58842153 /* Pods_MandiriMoviesApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73AA29FBB8AE0B500FD8DD7 /* Pods_MandiriMoviesApp.framework */; };
+		B587EC932958669000BE68A6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B587EC922958669000BE68A6 /* README.md */; };
 		B5A9FF0C2957EB950069DD71 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A9FF0B2957EB950069DD71 /* UIColor+Extension.swift */; };
 		B5A9FF0F295817B00069DD71 /* DetailGenreCollectionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A9FF0E295817B00069DD71 /* DetailGenreCollectionNode.swift */; };
 		B5A9FF11295817D60069DD71 /* DetailGenreCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A9FF10295817D60069DD71 /* DetailGenreCellNode.swift */; };
@@ -54,6 +55,7 @@
 
 /* Begin PBXFileReference section */
 		46ED7C5907D8D9DB8A2A4195 /* Pods-MandiriMoviesApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MandiriMoviesApp.debug.xcconfig"; path = "Target Support Files/Pods-MandiriMoviesApp/Pods-MandiriMoviesApp.debug.xcconfig"; sourceTree = "<group>"; };
+		B587EC922958669000BE68A6 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B5A9FF0B2957EB950069DD71 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		B5A9FF0E295817B00069DD71 /* DetailGenreCollectionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailGenreCollectionNode.swift; sourceTree = "<group>"; };
 		B5A9FF10295817D60069DD71 /* DetailGenreCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailGenreCellNode.swift; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 				B5D8DC142954977300863C13 /* Assets.xcassets */,
 				B5D8DC162954977300863C13 /* LaunchScreen.storyboard */,
 				B5D8DC192954977300863C13 /* Info.plist */,
+				B587EC922958669000BE68A6 /* README.md */,
 			);
 			path = MandiriMoviesApp;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B587EC932958669000BE68A6 /* README.md in Resources */,
 				B5D8DC182954977300863C13 /* LaunchScreen.storyboard in Resources */,
 				B5D8DC152954977300863C13 /* Assets.xcassets in Resources */,
 			);
