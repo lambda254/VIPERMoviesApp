@@ -18,11 +18,15 @@ protocol MovieReviewInteractorProtocol {
 }
 
 class MovieReviewInteractor: MovieReviewInteractorProtocol {
-    var presenter: MovieReviewPresenter?
+    weak var presenter: MovieReviewPresenter?
     
     private var networkProvider = MoyaProvider<NetworkService>()
     
     private var page = 0
+    
+    deinit {
+        print("interactor deinit")
+    }
     
     func getReviewData(movieId: Int, completion: @escaping ([MovieReview]) -> Void) {
         var data = [MovieReview]()

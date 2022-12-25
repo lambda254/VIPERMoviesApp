@@ -8,7 +8,7 @@
 import Foundation
 import TextureSwiftSupport
 
-protocol MovieReviewViewProtocol {
+protocol MovieReviewViewProtocol: AnyObject {
     var presenter: MovieReviewPresenter? {get set}
     func update(with review: [MovieReview])
 }

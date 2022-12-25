@@ -10,16 +10,20 @@ import Moya
 import SwiftyJSON
 import UIKit
 
-protocol MovieDetailInteractorProtocol {
+protocol MovieDetailInteractorProtocol: AnyObject {
     var presenter: MovieDetailPresenter? {get set}
     func getDetailMovie(movieId: Int, completion: @escaping (MovieDetail) -> Void)
     func getTrailerMovie(movieId: Int, completion: @escaping (String) -> Void)
 }
 
 class MovieDetailInteractor: MovieDetailInteractorProtocol {
-    var presenter: MovieDetailPresenter?
+    weak var presenter: MovieDetailPresenter?
     
     private var networkProvider = MoyaProvider<NetworkService>()
+    
+    deinit {
+        print("interactor deinit")
+    }
     
     func getDetailMovie(movieId: Int, completion: @escaping (MovieDetail) -> Void){
         var genresData = [String]()

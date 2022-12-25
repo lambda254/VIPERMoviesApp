@@ -8,7 +8,7 @@
 import Foundation
 import TextureSwiftSupport
 
-protocol MovieDetailViewProtocol {
+protocol MovieDetailViewProtocol: AnyObject {
     var presenter: MovieDetailPresenter? {get set}
     func update(with detail: MovieDetail)
     func update(title: String, posterImage: UIImage)

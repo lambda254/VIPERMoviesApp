@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol MovieReviewPresenterProtocol {
+protocol MovieReviewPresenterProtocol: AnyObject {
     var router: MovieReviewRouter? {get set}
     var interactor: MovieReviewInteractorProtocol? {get set}
     var view: MovieReviewViewProtocol? {get set}
@@ -25,9 +25,13 @@ class MovieReviewPresenter: MovieReviewPresenterProtocol {
     
     var interactor: MovieReviewInteractorProtocol?
     
-    var view: MovieReviewViewProtocol?
+    weak var view: MovieReviewViewProtocol?
     
     var movieId: Int?
+    
+    deinit {
+        print("presenter deinit")
+    }
 
     func dismissView() {
         router?.dismissView()

@@ -77,6 +77,15 @@ class MovieReviewController: ASDKViewController<ASScrollNode> {
         navigationController?.navigationBar.tintColor = .black
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        presenter = nil
+    }
+    
+    deinit {
+        print("controller deinit")
+    }
+    
     func setupDelegate() {
         reviewTableNode.tableDelegate = self
     }

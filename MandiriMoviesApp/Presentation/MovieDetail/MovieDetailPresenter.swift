@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol MovieDetailPresenterProtocol {
+protocol MovieDetailPresenterProtocol: AnyObject {
     var router: MovieDetailRouter? {get set}
     var interactor: MovieDetailInteractorProtocol? {get set}
     var view: MovieDetailViewProtocol? {get set}
@@ -24,10 +24,14 @@ class MovieDetailPresenter: MovieDetailPresenterProtocol {
     
     var interactor: MovieDetailInteractorProtocol?
     
-    var view: MovieDetailViewProtocol?
+    weak var view: MovieDetailViewProtocol?
     
     var movieId: Int?
-
+    
+    deinit {
+        print("presenter deinit")
+    }
+    
     func didPassedMovieData(id: Int, title: String, posterImage: UIImage){
         self.movieId = id
         view?.update(title: title, posterImage: posterImage)

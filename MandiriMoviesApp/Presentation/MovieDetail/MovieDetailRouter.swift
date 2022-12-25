@@ -38,6 +38,10 @@ class MovieDetailRouter: MovieDetailRouterProtocol {
         return router
     }
     
+    deinit {
+        print("router deinit")
+    }
+    
     func dismissView() {
         entry?.dismiss(animated: true)
     }

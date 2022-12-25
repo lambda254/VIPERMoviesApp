@@ -149,12 +149,17 @@ class MovieDetailController: ASDKViewController<ASScrollNode> {
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
+    deinit {
+        print("controller deinit")
+    }
+    
     @objc func reviewButtonTapped() {
         presenter?.navigateToReview()
     }
     
     @objc func dismissButtonTapped() {
         presenter?.dismissView()
+        presenter = nil
     }
 }
 
