@@ -1,3 +1,7 @@
-If there is error, before starting the app, try to reset Swift Package Manager cache on XCode
+Open the xcworkspace project
+
+Make sure the device / simulator on Light Mode
+
+If there is error try to reset Swift Package Manager cache on XCode
 
 Goto File -> Packages -> Reset Package Caches
