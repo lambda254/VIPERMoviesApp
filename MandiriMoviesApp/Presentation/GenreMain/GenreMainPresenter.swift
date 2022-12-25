@@ -15,6 +15,8 @@ protocol GenreMainPresenterProtocol {
     
     func navigateToMovieMain(genreId: Int, title: String)
     
+    func didFetchedGenre(data: [GenreMain])
+    
 }
 
 class GenreMainPresenter: GenreMainPresenterProtocol {
@@ -22,13 +24,15 @@ class GenreMainPresenter: GenreMainPresenterProtocol {
     
     var interactor: GenreMainInteractorProtocol? {
         didSet {
-            interactor?.getGenreMovie(completion: {[unowned self] data in
-                view?.update(with: data)
-            })
+            interactor?.getGenreMovie()
         }
     }
     
     var view: GenreMainViewProtocol?
+    
+    func didFetchedGenre(data: [GenreMain]) {
+        view?.update(with: data)
+    }
     
     func navigateToMovieMain(genreId: Int, title: String) {
         router?.navigateToMovieMain(genreId: genreId, title: title)

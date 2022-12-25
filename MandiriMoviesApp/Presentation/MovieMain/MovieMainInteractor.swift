@@ -12,7 +12,7 @@ import SwiftyJSON
 protocol MovieMainInteractorProtocol: AnyObject {
     var presenter: MovieMainPresenter? {get set}
     
-    func getMovies(genreId: Int, completion: @escaping ([MovieMain]) -> Void)
+    func getMovies(genreId: Int)
     func getPosterImage(imageString: String, completion: @escaping (UIImage) -> Void)
 }
 
@@ -27,7 +27,7 @@ class MovieMainInteractor: MovieMainInteractorProtocol {
         print("interactor deinit")
     }
     
-    func getMovies(genreId: Int, completion: @escaping ([MovieMain]) -> Void) {
+    func getMovies(genreId: Int) {
         var data = [MovieMain]()
         var endCounter = 0
         page += 1
@@ -44,7 +44,7 @@ class MovieMainInteractor: MovieMainInteractorProtocol {
                         data[i].posterImage = image
                         endCounter += 1
                         if endCounter == data.count {
-                            completion(data)
+                            presenter?.didFetchedMovie(data: data)
                         }
                     }
                 }

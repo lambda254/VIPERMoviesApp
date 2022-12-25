@@ -14,7 +14,9 @@ protocol MovieDetailPresenterProtocol: AnyObject {
     var view: MovieDetailViewProtocol? {get set}
     
     func didPassedMovieData(id: Int, title: String, posterImage: UIImage)
-    
+    func didFetchedMovieDetail(data: MovieDetail)
+    func didFetchedMovieTrailer(data: String)
+
     func navigateToReview()
     func dismissView()
 }
@@ -35,12 +37,16 @@ class MovieDetailPresenter: MovieDetailPresenterProtocol {
     func didPassedMovieData(id: Int, title: String, posterImage: UIImage){
         self.movieId = id
         view?.update(title: title, posterImage: posterImage)
-        interactor?.getDetailMovie(movieId: id, completion: {[unowned self] data in
-            view?.update(with: data)
-        })
-        interactor?.getTrailerMovie(movieId: id, completion: { [unowned self] data in
-            view?.update(trailer: data)
-        })
+        interactor?.getDetailMovie(movieId: id)
+        interactor?.getTrailerMovie(movieId: id)
+    }
+    
+    func didFetchedMovieDetail(data: MovieDetail) {
+        view?.update(with: data)
+    }
+    
+    func didFetchedMovieTrailer(data: String) {
+        view?.update(trailer: data)
     }
     
     func dismissView() {

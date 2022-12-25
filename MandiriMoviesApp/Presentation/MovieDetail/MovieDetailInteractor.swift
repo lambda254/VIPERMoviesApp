@@ -12,8 +12,8 @@ import UIKit
 
 protocol MovieDetailInteractorProtocol: AnyObject {
     var presenter: MovieDetailPresenter? {get set}
-    func getDetailMovie(movieId: Int, completion: @escaping (MovieDetail) -> Void)
-    func getTrailerMovie(movieId: Int, completion: @escaping (String) -> Void)
+    func getDetailMovie(movieId: Int)
+    func getTrailerMovie(movieId: Int)
 }
 
 class MovieDetailInteractor: MovieDetailInteractorProtocol {
@@ -25,9 +25,9 @@ class MovieDetailInteractor: MovieDetailInteractorProtocol {
         print("interactor deinit")
     }
     
-    func getDetailMovie(movieId: Int, completion: @escaping (MovieDetail) -> Void){
+    func getDetailMovie(movieId: Int){
         var genresData = [String]()
-        networkProvider.request(.fetchDetailData(movieId: movieId)) { result in
+        networkProvider.request(.fetchDetailData(movieId: movieId)) {[unowned self] result in
             switch result {
             case .success(let response):
                 let json = try! JSON(data: response.data)
@@ -40,16 +40,16 @@ class MovieDetailInteractor: MovieDetailInteractorProtocol {
                     genresData.append(genres[i]["name"].string ?? "")
                 }
                 
-                completion(MovieDetail(id: movieId, synopsis: synopsis, genres: genresData, homepage: homepage, rating: rating))
+                presenter?.didFetchedMovieDetail(data: MovieDetail(id: movieId, synopsis: synopsis, genres: genresData, homepage: homepage, rating: rating))
             case .failure(let error):
                 print(error)
             }
         }
     }
     
-    func getTrailerMovie(movieId: Int, completion: @escaping (String) -> Void){
+    func getTrailerMovie(movieId: Int){
         var data = ""
-        networkProvider.request(.fetchTrailerData(movieId: movieId)) { result in
+        networkProvider.request(.fetchTrailerData(movieId: movieId)) {[unowned self] result in
             switch result {
             case .success(let response):
                 let json = try! JSON(data: response.data)
@@ -59,7 +59,7 @@ class MovieDetailInteractor: MovieDetailInteractorProtocol {
                         data = jsonResult[i]["key"].string ?? ""
                     }
                 }
-                completion(data)
+                presenter?.didFetchedMovieTrailer(data: data)
             case .failure(let error):
                 print(error)
             }

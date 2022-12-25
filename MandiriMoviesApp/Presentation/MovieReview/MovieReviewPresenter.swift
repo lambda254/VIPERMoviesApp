@@ -14,6 +14,7 @@ protocol MovieReviewPresenterProtocol: AnyObject {
     var view: MovieReviewViewProtocol? {get set}
     
     func didPassedMovieId(movieId: Int)
+    func didFetchedReview(reviewData: [MovieReview], totalData: Int)
     
     func fetchNewReviews()
         
@@ -42,11 +43,12 @@ class MovieReviewPresenter: MovieReviewPresenterProtocol {
         fetchNewReviews()
     }
     
-    func fetchNewReviews() {
-        interactor?.getReviewData(movieId: movieId ?? 0, completion: {[unowned self] data, totalReviewer in
-            view?.update(with: data, totalReviewer: totalReviewer)
-        })
+    func didFetchedReview(reviewData: [MovieReview], totalData: Int) {
+        view?.update(with: reviewData, totalReviewer: totalData)
     }
     
+    func fetchNewReviews() {
+        interactor?.getReviewData(movieId: movieId ?? 0)
+    }
     
 }

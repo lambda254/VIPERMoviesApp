@@ -12,7 +12,7 @@ import UIKit
 
 protocol GenreMainInteractorProtocol {
     var presenter: GenreMainPresenter? {get set}
-    func getGenreMovie(completion: @escaping ([GenreMain]) -> Void)
+    func getGenreMovie()
 }
 
 class GenreMainInteractor: GenreMainInteractorProtocol {
@@ -20,9 +20,9 @@ class GenreMainInteractor: GenreMainInteractorProtocol {
     
     private var networkProvider = MoyaProvider<NetworkService>()
     
-    func getGenreMovie(completion: @escaping ([GenreMain]) -> Void) {
+    func getGenreMovie() {
         var data = [GenreMain]()
-        networkProvider.request(.fetchGenreData) { result in
+        networkProvider.request(.fetchGenreData) {[unowned self] result in
             switch result {
             case .success(let response):
                 let json = try! JSON(data: response.data)
@@ -33,8 +33,7 @@ class GenreMainInteractor: GenreMainInteractorProtocol {
                     let id = jsonGenres[i]["id"].intValue
                     data.append(GenreMain(id: id, title: title))
                 }
-                
-                completion(data)
+                presenter?.didFetchedGenre(data: data)
             case .failure(let error):
                 print(error)
             }

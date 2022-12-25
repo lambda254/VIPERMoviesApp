@@ -13,7 +13,7 @@ import UIKit
 protocol MovieReviewInteractorProtocol {
     var presenter: MovieReviewPresenter? {get set}
     
-    func getReviewData(movieId: Int, completion: @escaping ([MovieReview], Int) -> Void)
+    func getReviewData(movieId: Int)
 
 }
 
@@ -28,7 +28,7 @@ class MovieReviewInteractor: MovieReviewInteractorProtocol {
         print("interactor deinit")
     }
     
-    func getReviewData(movieId: Int, completion: @escaping ([MovieReview], Int) -> Void) {
+    func getReviewData(movieId: Int) {
         var data = [MovieReview]()
         page += 1
         networkProvider.request(.fetchReviewData(movieId: movieId, page: page)) {[unowned self] result in
@@ -42,7 +42,7 @@ class MovieReviewInteractor: MovieReviewInteractorProtocol {
                 }
                 
                 if page > 2 && !data.isEmpty || page == 1 {
-                    completion(data, jsonTotalResult.intValue)
+                    presenter?.didFetchedReview(reviewData: data, totalData: jsonTotalResult.intValue)
                 }
             case .failure(let error):
                 print(error)

@@ -14,6 +14,7 @@ protocol MovieMainPresenterProtocol {
     var view: MovieMainViewProtocol? {get set}
         
     func didPassedGenreId(genreId: Int, title: String)
+    func didFetchedMovie(data: [MovieMain])
     
     func navigateToDetail(id: Int, title: String, poster: UIImage)
     func fetchNewMovies()
@@ -38,14 +39,16 @@ class MovieMainPresenter: MovieMainPresenterProtocol {
         fetchNewMovies()
     }
     
+    func didFetchedMovie(data: [MovieMain]) {
+        view?.update(with: data)
+    }
+    
     func navigateToDetail(id: Int, title: String, poster: UIImage) {
         router?.navigateToDetail(id: id, title: title, poster: poster)
     }
     
     func fetchNewMovies() {
-        interactor?.getMovies(genreId: genreId ?? 0, completion: {[unowned self] data in
-            view?.update(with: data)
-        })
+        interactor?.getMovies(genreId: genreId ?? 0)
     }
     
 }
