@@ -224,6 +224,7 @@
 		B5D8DBFF2954977200863C13 = {
 			isa = PBXGroup;
 			children = (
+				B587EC922958669000BE68A6 /* README.md */,
 				B5D8DC0A2954977200863C13 /* MandiriMoviesApp */,
 				B5D8DC092954977200863C13 /* Products */,
 				AFC859123413DF2C43DE47EF /* Pods */,
@@ -248,7 +249,6 @@
 				B5D8DC142954977300863C13 /* Assets.xcassets */,
 				B5D8DC162954977300863C13 /* LaunchScreen.storyboard */,
 				B5D8DC192954977300863C13 /* Info.plist */,
-				B587EC922958669000BE68A6 /* README.md */,
 			);
 			path = MandiriMoviesApp;
 			sourceTree = "<group>";
