@@ -25,7 +25,7 @@ class ReviewTableNode: ASTableNode {
         view.separatorStyle = .none
         allowsSelection = false
         style.width = ASDimensionMake(.fraction, 1)
-        style.height = ASDimensionMake(500)
+        style.height = ASDimensionMake(640)
     }
     
 }

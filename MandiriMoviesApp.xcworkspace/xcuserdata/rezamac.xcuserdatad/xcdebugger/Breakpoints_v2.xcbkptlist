@@ -24,7 +24,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "9F0FC9A1-F6BC-42FD-A1EF-1ADEC06CA611"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MandiriMoviesApp/Presentation/MovieMain/MovieMainPresenter.swift"

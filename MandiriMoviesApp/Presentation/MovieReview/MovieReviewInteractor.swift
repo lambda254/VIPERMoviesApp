@@ -13,7 +13,7 @@ import UIKit
 protocol MovieReviewInteractorProtocol {
     var presenter: MovieReviewPresenter? {get set}
     
-    func getReviewData(movieId: Int, completion: @escaping ([MovieReview]) -> Void)
+    func getReviewData(movieId: Int, completion: @escaping ([MovieReview], Int) -> Void)
 
 }
 
@@ -28,7 +28,7 @@ class MovieReviewInteractor: MovieReviewInteractorProtocol {
         print("interactor deinit")
     }
     
-    func getReviewData(movieId: Int, completion: @escaping ([MovieReview]) -> Void) {
+    func getReviewData(movieId: Int, completion: @escaping ([MovieReview], Int) -> Void) {
         var data = [MovieReview]()
         page += 1
         networkProvider.request(.fetchReviewData(movieId: movieId, page: page)) {[unowned self] result in
@@ -36,13 +36,13 @@ class MovieReviewInteractor: MovieReviewInteractorProtocol {
             case .success(let response):
                 let json = try! JSON(data: response.data)
                 let jsonResult = json["results"]
-            
+                let jsonTotalResult = json["total_results"]
                 for i in 0 ..< jsonResult.count {
                     data.append(MovieReview(username: jsonResult[i]["author"].string ?? "", review: jsonResult[i]["content"].string ?? ""))
                 }
                 
                 if page > 2 && !data.isEmpty || page == 1 {
-                    completion(data)
+                    completion(data, jsonTotalResult.intValue)
                 }
             case .failure(let error):
                 print(error)

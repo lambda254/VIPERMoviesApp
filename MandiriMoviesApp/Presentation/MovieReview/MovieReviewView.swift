@@ -10,6 +10,6 @@ import TextureSwiftSupport
 
 protocol MovieReviewViewProtocol: AnyObject {
     var presenter: MovieReviewPresenter? {get set}
-    func update(with review: [MovieReview])
+    func update(with review: [MovieReview], totalReviewer: Int)
 }
 

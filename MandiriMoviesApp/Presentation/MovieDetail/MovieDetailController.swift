@@ -17,6 +17,8 @@ class MovieDetailController: ASDKViewController<ASScrollNode> {
     
     private let collectionNode = DetailGenreCollectionNode()
     
+    private let starCollectionNode = ReviewStarCollectionNode()
+    
     var ytPlayer = YTPlayerView()
     
     private let rootNode: ASScrollNode = {

@@ -13,8 +13,10 @@ class MovieReviewController: ASDKViewController<ASScrollNode> {
     
     var presenter: MovieReviewPresenter?
     
-    private let reviewTableNode = ReviewTableNode()
+    private let paragraph = NSMutableParagraphStyle()
     
+    private let reviewTableNode = ReviewTableNode()
+        
     private var isLoading = true
     
     private let rootNode: ASScrollNode = {
@@ -34,6 +36,16 @@ class MovieReviewController: ASDKViewController<ASScrollNode> {
         return node
     }()
     
+    private let totalReviewerNode: ASTextNode = {
+        let node = ASTextNode()
+        return node
+    }()
+    
+    private let ratingDescNode: ASTextNode = {
+        let node = ASTextNode()
+        return node
+    }()
+        
     private let loadingNode: ASDisplayNode = {
         let node = ASDisplayNode()
         let loadingSpinner: UIActivityIndicatorView = {
@@ -50,12 +62,23 @@ class MovieReviewController: ASDKViewController<ASScrollNode> {
     override init() {
         super.init(node: rootNode)
         self.title = "Review"
+        paragraph.alignment = .center
         setupDelegate()
         rootNode.layoutSpecBlock = {[self] _,_ -> ASLayoutSpec in
             return LayoutSpec {
                 CenterLayout(centeringOptions: .X) {
                     InsetLayout(insets: UIEdgeInsets(top: 100, left: 0, bottom: 0, right: 0)) {
-                        isLoading ? loadingNode : reviewTableNode.data.isEmpty ? warningNode : reviewTableNode
+                        VStackLayout {
+                            InsetLayout(insets: UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)) {
+                                CenterLayout(centeringOptions: .X) {
+                                    VStackLayout {
+                                        totalReviewerNode
+                                    }
+                                }
+                            }
+                            
+                            isLoading ? loadingNode : reviewTableNode.data.isEmpty ? warningNode : reviewTableNode
+                        }
                     }
                 }
             }
@@ -74,7 +97,7 @@ class MovieReviewController: ASDKViewController<ASScrollNode> {
         super.viewWillAppear(animated)
         node.view.contentInsetAdjustmentBehavior = .never
         navigationController?.setNavigationBarHidden(false, animated: false)
-        navigationController?.navigationBar.tintColor = .black
+        navigationController?.navigationBar.tintColor = .appBlue
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -94,7 +117,17 @@ class MovieReviewController: ASDKViewController<ASScrollNode> {
 
 extension MovieReviewController: MovieReviewViewProtocol {
     
-    func update(with review: [MovieReview]) {
+    func update(with review: [MovieReview], totalReviewer: Int) {
+        totalReviewerNode.attributedText = NSAttributedString(string: "\(totalReviewer) Reviews", attributes: [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .bold),
+            NSAttributedString.Key.foregroundColor: UIColor.appBlue,
+            NSAttributedString.Key.paragraphStyle: paragraph
+        ])
+        ratingDescNode.attributedText = NSAttributedString(string: "Excellent", attributes: [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 19, weight: .medium),
+            NSAttributedString.Key.foregroundColor: UIColor.appBlue
+        ])
+        
         reviewTableNode.data += review
         reviewTableNode.reloadData()
         rootNode.setNeedsLayout()

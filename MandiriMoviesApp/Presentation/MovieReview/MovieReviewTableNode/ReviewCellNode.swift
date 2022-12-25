@@ -22,9 +22,12 @@ class ReviewCellNode: ASCellNode {
     
     private lazy var backgroundContainer: ASDisplayNode = {
         let node = ASDisplayNode()
-        node.backgroundColor = .gray
+        let randomColor = UIColor(red: CGFloat.random(in: 0 ... 255)/255, green: CGFloat.random(in: 0 ... 255)/255, blue: CGFloat.random(in: 0 ... 255)/255, alpha: 1).cgColor
+        node.backgroundColor = .white
         node.automaticallyManagesSubnodes = true
         node.cornerRadius = 20
+        node.borderWidth = 1
+        node.borderColor = randomColor
         
         node.layoutSpecBlock = {[self] _,_ -> ASLayoutSpec in
             return LayoutSpec {
