@@ -13,9 +13,7 @@ class MovieMainController: ASDKViewController<ASScrollNode> {
     var presenter: MovieMainPresenter?
     
     private let movieCollectionNode = MainCollectionNode()
-    
-    private var isLoading = true
-    
+        
     private let rootNode: ASScrollNode = {
         let node = ASScrollNode()
         node.automaticallyManagesSubnodes = true
@@ -23,22 +21,12 @@ class MovieMainController: ASDKViewController<ASScrollNode> {
         node.backgroundColor = .white
         return node
     }()
-    
+
     private let loadingNode: ASDisplayNode = {
         let node = ASDisplayNode()
-        let loadingSpinner: UIActivityIndicatorView = {
-            let loadingSpinner = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.medium)
-            loadingSpinner.translatesAutoresizingMaskIntoConstraints = false
-            loadingSpinner.hidesWhenStopped = true
-            return loadingSpinner
-        }()
-        loadingSpinner.startAnimating()
-        node.view.addSubview(loadingSpinner)
-        return node
-    }()
-    
-    private let loadingNode2: ASDisplayNode = {
-        let node = ASDisplayNode()
+        node.style.width = ASDimensionMake(25)
+        node.style.height = ASDimensionMake(25)
+        node.isHidden = false
         let loadingSpinner: UIActivityIndicatorView = {
             let loadingSpinner = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.medium)
             loadingSpinner.translatesAutoresizingMaskIntoConstraints = false
@@ -57,9 +45,17 @@ class MovieMainController: ASDKViewController<ASScrollNode> {
             return LayoutSpec {
                 InsetLayout(insets: UIEdgeInsets(top: 90, left: 16, bottom: 0, right: 16)) {
                     CenterLayout(centeringOptions: .X) {
-                        isLoading ? loadingNode : movieCollectionNode
+                        movieCollectionNode
                     }
                 }
+                InsetLayout(insets: UIEdgeInsets(top: 90, left: 16, bottom: 0, right: 16)) {
+                    ZStackLayout {
+                        CenterLayout {
+                            loadingNode
+                        }
+                    }
+                }
+                
             }
         }
     }
@@ -97,7 +93,7 @@ extension MovieMainController: MovieMainViewProtocol {
             movieCollectionNode.reloadData()
         }
         rootNode.setNeedsLayout()
-        isLoading = false
+        loadingNode.isHidden = true
     }
     
     func update(title: String) {
@@ -109,6 +105,7 @@ extension MovieMainController: MovieMainViewProtocol {
 extension MovieMainController: MainCollectionDelegate {
     
     func fetchNewMovies() {
+        loadingNode.isHidden = false
         presenter?.fetchNewMovies()
     }
     
