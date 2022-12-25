@@ -15,7 +15,7 @@ class MovieDetailController: ASDKViewController<ASScrollNode> {
     
     private let paragraph = NSMutableParagraphStyle()
     
-    private let collectionNode = DetailGenreCollectionNode()
+    private let genreCollectionNode = DetailGenreCollectionNode()
     
     private let starCollectionNode = DetailStarCollectionNode()
     
@@ -32,6 +32,11 @@ class MovieDetailController: ASDKViewController<ASScrollNode> {
     private let titleNode: ASTextNode = {
         let node = ASTextNode()
         node.style.width = ASDimensionMake(.fraction, 1)
+        return node
+    }()
+    
+    private let ratingNode: ASTextNode = {
+        let node = ASTextNode()
         return node
     }()
     
@@ -120,11 +125,16 @@ class MovieDetailController: ASDKViewController<ASScrollNode> {
                             InsetLayout(insets: UIEdgeInsets(top: 0, left: 16, bottom: 5, right: 16)) {
                                 VStackLayout {
                                     titleNode
-                                    starCollectionNode
+                                    HStackLayout(spacing: 10) {
+                                        starCollectionNode
+                                        CenterLayout {
+                                            ratingNode
+                                        }
+                                    }
                                 }
                             }
-                            InsetLayout(insets: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)) {
-                                collectionNode
+                            InsetLayout(insets: UIEdgeInsets(top: 0, left: 16, bottom: 20, right: 0)) {
+                                genreCollectionNode
                             }
                             InsetLayout(insets: UIEdgeInsets(top: 0, left: 16, bottom: 50, right: 16)) {
                                 VStackLayout(spacing: 10) {
@@ -190,9 +200,16 @@ extension MovieDetailController: MovieDetailViewProtocol {
     }
     
     func update(with detail: MovieDetail) {
-        collectionNode.data = detail.genres
-        collectionNode.reloadData()
+        genreCollectionNode.data = detail.genres
+        genreCollectionNode.reloadData()
         synopsisDescNode.attributedText = NSAttributedString(string: detail.synopsis, attributes: [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15)
+        ])
+        
+        starCollectionNode.data = detail.rating
+        starCollectionNode.reloadData()
+        
+        ratingNode.attributedText = NSAttributedString(string: "\(String(format: "%.1f", detail.rating))/10 ", attributes: [
             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15)
         ])
     }
