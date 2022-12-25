@@ -8,7 +8,7 @@
 import Foundation
 import TextureSwiftSupport
 
-class ReviewStarCellNode: ASCellNode {
+class DetailStarCellNode: ASCellNode {
     private let ratingStarNode: ASImageNode = {
         let node = ASImageNode()
         node.image = UIImage(systemName: "star.fill")

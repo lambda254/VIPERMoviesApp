@@ -12,4 +12,5 @@ struct MovieDetail {
     let synopsis: String
     let genres: [String]
     let homepage: String
+    let rating: Double
 }

@@ -17,7 +17,7 @@ class MovieDetailController: ASDKViewController<ASScrollNode> {
     
     private let collectionNode = DetailGenreCollectionNode()
     
-    private let starCollectionNode = ReviewStarCollectionNode()
+    private let starCollectionNode = DetailStarCollectionNode()
     
     var ytPlayer = YTPlayerView()
     
@@ -118,7 +118,10 @@ class MovieDetailController: ASDKViewController<ASScrollNode> {
                         }
                         VStackLayout {
                             InsetLayout(insets: UIEdgeInsets(top: 0, left: 16, bottom: 5, right: 16)) {
-                                titleNode
+                                VStackLayout {
+                                    titleNode
+                                    starCollectionNode
+                                }
                             }
                             InsetLayout(insets: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)) {
                                 collectionNode

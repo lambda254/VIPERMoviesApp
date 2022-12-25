@@ -8,7 +8,7 @@
 import Foundation
 import TextureSwiftSupport
 
-class ReviewStarCollectionNode: ASCollectionNode {
+class DetailStarCollectionNode: ASCollectionNode {
         
     var data = 2.0
 
@@ -30,14 +30,14 @@ class ReviewStarCollectionNode: ASCollectionNode {
     }
 }
 
-extension ReviewStarCollectionNode: ASCollectionDelegate, ASCollectionDataSource {
+extension DetailStarCollectionNode: ASCollectionDelegate, ASCollectionDataSource {
     func collectionNode(_ collectionNode: ASCollectionNode, numberOfItemsInSection section: Int) -> Int {
         return 5
     }
     func collectionNode(_ collectionNode: ASCollectionNode, nodeBlockForItemAt indexPath: IndexPath) -> ASCellNodeBlock {
         let acceptableStar = 5 - (10 / Int(data))
         let cellNodeBlock = {[self] () -> ASCellNode in
-            let cellNode = ReviewStarCellNode()
+            let cellNode = DetailStarCellNode()
             if indexPath.row >= acceptableStar {
                 cellNode.unfilledStar()
             }

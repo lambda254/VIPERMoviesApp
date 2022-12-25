@@ -31,15 +31,16 @@ class MovieDetailInteractor: MovieDetailInteractorProtocol {
             switch result {
             case .success(let response):
                 let json = try! JSON(data: response.data)
-                let synopsis = json["overview"].string ?? ""
+                let synopsis = json["overview"].stringValue
                 let genres = json["genres"]
-                let homepage = json["homepage"].string ?? ""
+                let homepage = json["homepage"].stringValue
+                let rating = json["vote_average"].doubleValue
                 
                 for i in 0 ..< genres.count {
                     genresData.append(genres[i]["name"].string ?? "")
                 }
                 
-                completion(MovieDetail(id: movieId, synopsis: synopsis, genres: genresData, homepage: homepage))
+                completion(MovieDetail(id: movieId, synopsis: synopsis, genres: genresData, homepage: homepage, rating: rating))
             case .failure(let error):
                 print(error)
             }
