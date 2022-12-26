@@ -91,11 +91,24 @@ extension MovieMainController: MovieMainViewProtocol {
         switch result {
         case .success(let data):
             movieCollectionNode.data += data
+            movieCollectionNode.posterCacheTotalBefore = data.count
             UIView.performWithoutAnimation {
                 movieCollectionNode.reloadData()
             }
             rootNode.setNeedsLayout()
             loadingNode.isHidden = true
+        case .failure(let error):
+            let error = error as NSError
+
+            print(error)
+            
+        }
+    }
+    
+    func update(posterResult: Result<UIImage, Error>) {
+        switch posterResult {
+        case .success(let data):
+            print(data)
         case .failure(let error):
             let error = error as NSError
 

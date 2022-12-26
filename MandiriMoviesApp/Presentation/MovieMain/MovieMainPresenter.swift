@@ -47,7 +47,7 @@ class MovieMainPresenter: MovieMainPresenterProtocol {
             view?.update(result: .failure(error))
         }
     }
-    
+
     func navigateToDetail(id: Int, title: String, poster: UIImage) {
         router?.navigateToDetail(id: id, title: title, poster: poster)
     }

@@ -11,7 +11,6 @@ import TextureSwiftSupport
 class DetailStarCollectionNode: ASCollectionNode {
         
     var data = 2.0
-
             
     private let flowLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()

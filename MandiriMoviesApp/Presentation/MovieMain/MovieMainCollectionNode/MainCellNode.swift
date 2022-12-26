@@ -18,7 +18,7 @@ class MainCellNode: ASCellNode {
     
     let paragraph = NSMutableParagraphStyle()
     
-    private let loadingNode: ASDisplayNode = {
+    let loadingNode: ASDisplayNode = {
         let node = ASDisplayNode()
         
         DispatchQueue.main.async {
@@ -47,6 +47,7 @@ class MainCellNode: ASCellNode {
         node.style.height = ASDimensionMake(.fraction, 0.86)
         node.contentMode = .scaleAspectFit
         node.cornerRadius = 30
+        node.backgroundColor = .gray
         
         node.layoutSpecBlock = {[unowned self] _,_ -> ASLayoutSpec in
             return LayoutSpec {
@@ -63,6 +64,7 @@ class MainCellNode: ASCellNode {
         self.poster = poster
         self.movieId = movieId
         super.init()
+        loadingNode.isHidden = true
         automaticallyManagesSubnodes = true
         style.width = ASDimensionMake(160)
         style.height = ASDimensionMake(300)
@@ -75,9 +77,6 @@ class MainCellNode: ASCellNode {
         
         titleNode.attributedText = NSAttributedString(string: title, attributes: attrs)
         posterNode.image = poster
-        if poster.size != CGSize(width: 0, height: 0) {
-            loadingNode.isHidden = true
-        }
     }
     
     

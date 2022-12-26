@@ -11,5 +11,6 @@ import TextureSwiftSupport
 protocol MovieMainViewProtocol: AnyObject {
     var presenter: MovieMainPresenter? {get set}
     func update(result: Result<[MovieMain], Error>)
+    func update(posterResult: Result<UIImage, Error>)
     func update(title: String)
 }
