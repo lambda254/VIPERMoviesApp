@@ -18,9 +18,7 @@ class MainCollectionNode: ASCollectionNode {
     weak var collectionDelegate: MainCollectionDelegate?
     
     var data = [MovieMain]()
-    
-    var doneReloading = false
-        
+            
     private let flowLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical

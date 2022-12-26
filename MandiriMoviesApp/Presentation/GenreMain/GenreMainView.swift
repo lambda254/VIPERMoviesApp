@@ -11,6 +11,6 @@ import TextureSwiftSupport
 protocol GenreMainViewProtocol {
     var presenter: GenreMainPresenter? {get set}
     
-    func update(with genre: [GenreMain])
+    func update(result: Result<[GenreMain], Error>)
 }
 

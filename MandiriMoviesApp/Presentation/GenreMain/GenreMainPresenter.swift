@@ -15,7 +15,7 @@ protocol GenreMainPresenterProtocol {
     
     func navigateToMovieMain(genreId: Int, title: String)
     
-    func didFetchedGenre(data: [GenreMain])
+    func didFetchedGenre(result: Result<[GenreMain], Error>)
     
 }
 
@@ -30,8 +30,13 @@ class GenreMainPresenter: GenreMainPresenterProtocol {
     
     var view: GenreMainViewProtocol?
     
-    func didFetchedGenre(data: [GenreMain]) {
-        view?.update(with: data)
+    func didFetchedGenre(result: Result<[GenreMain], Error>) {
+        switch result {
+        case .success(let data):
+            view?.update(result: .success(data))
+        case .failure(let error):
+            view?.update(result: .failure(error))
+        }
     }
     
     func navigateToMovieMain(genreId: Int, title: String) {

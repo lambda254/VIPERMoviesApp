@@ -53,9 +53,14 @@ class GenreMainController: ASDKViewController<ASScrollNode> {
 
 extension GenreMainController: GenreMainViewProtocol {
     
-    func update(with genre: [GenreMain]) {
-        genreCollectionNode.data = genre
-        genreCollectionNode.reloadData()
+    func update(result: Result<[GenreMain], Error>) {
+        switch result {
+        case .success(let data):
+            genreCollectionNode.data = data
+            genreCollectionNode.reloadData()
+        case .failure(let error):
+            print(error)
+        }
     }
     
 }

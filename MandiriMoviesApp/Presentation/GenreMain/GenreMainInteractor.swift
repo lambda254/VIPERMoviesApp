@@ -33,9 +33,9 @@ class GenreMainInteractor: GenreMainInteractorProtocol {
                     let id = jsonGenres[i]["id"].intValue
                     data.append(GenreMain(id: id, title: title))
                 }
-                presenter?.didFetchedGenre(data: data)
+                presenter?.didFetchedGenre(result: .success(data))
             case .failure(let error):
-                print(error)
+                presenter?.didFetchedGenre(result: .failure(error))
             }
         }
     }
