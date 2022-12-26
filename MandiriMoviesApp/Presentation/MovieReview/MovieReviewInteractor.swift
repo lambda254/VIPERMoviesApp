@@ -31,7 +31,8 @@ class MovieReviewInteractor: MovieReviewInteractorProtocol {
     func getReviewData(movieId: Int) {
         var data = [MovieReview]()
         page += 1
-        networkProvider.request(.fetchReviewData(movieId: movieId, page: page)) {[unowned self] result in
+        networkProvider.request(.fetchReviewData(movieId: movieId, page: page)) {[weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success(let response):
                 let json = try! JSON(data: response.data)
@@ -41,11 +42,11 @@ class MovieReviewInteractor: MovieReviewInteractorProtocol {
                     data.append(MovieReview(username: jsonResult[i]["author"].string ?? "", review: jsonResult[i]["content"].string ?? ""))
                 }
                 
-                if page > 2 && !data.isEmpty || page == 1 {
-                    presenter?.didFetchedReview(result: .success(data), totalReview: jsonTotalResult.intValue)
+                if self.page > 2 && !data.isEmpty || self.page == 1 {
+                    self.presenter?.didFetchedReview(result: .success(data), totalReview: jsonTotalResult.intValue)
                 }
             case .failure(let error):
-                presenter?.didFetchedReview(result: .failure(error), totalReview: 0)
+                self.presenter?.didFetchedReview(result: .failure(error), totalReview: 0)
             }
         }
     }

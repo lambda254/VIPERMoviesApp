@@ -90,7 +90,7 @@ extension MovieMainController: MovieMainViewProtocol {
     func update(result: Result<[MovieMain], Error>) {
         switch result {
         case .success(let data):
-            movieCollectionNode.data += data
+            movieCollectionNode.data = data
             UIView.performWithoutAnimation {
                 movieCollectionNode.reloadData()
             }
@@ -98,9 +98,9 @@ extension MovieMainController: MovieMainViewProtocol {
             loadingNode.isHidden = true
         case .failure(let error):
             let error = error as NSError
-            
+
             print(error)
-                
+            
         }
     }
     

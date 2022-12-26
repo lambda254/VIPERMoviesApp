@@ -27,7 +27,7 @@ class MovieDetailInteractor: MovieDetailInteractorProtocol {
     
     func getDetailMovie(movieId: Int){
         var genresData = [String]()
-        networkProvider.request(.fetchDetailData(movieId: movieId)) {[unowned self] result in
+        networkProvider.request(.fetchDetailData(movieId: movieId)) {[weak self] result in
             switch result {
             case .success(let response):
                 let json = try! JSON(data: response.data)
@@ -40,9 +40,9 @@ class MovieDetailInteractor: MovieDetailInteractorProtocol {
                     genresData.append(genres[i]["name"].string ?? "")
                 }
                 
-                presenter?.didFetchedMovieDetail(result: .success(MovieDetail(id: movieId, synopsis: synopsis, genres: genresData, homepage: homepage, rating: rating)))
+                self?.presenter?.didFetchedMovieDetail(result: .success(MovieDetail(id: movieId, synopsis: synopsis, genres: genresData, homepage: homepage, rating: rating)))
             case .failure(let error):
-                presenter?.didFetchedMovieDetail(result: .failure(error))
+                self?.presenter?.didFetchedMovieDetail(result: .failure(error))
                 print(error)
             }
         }
@@ -50,7 +50,7 @@ class MovieDetailInteractor: MovieDetailInteractorProtocol {
     
     func getTrailerMovie(movieId: Int){
         var data = ""
-        networkProvider.request(.fetchTrailerData(movieId: movieId)) {[unowned self] result in
+        networkProvider.request(.fetchTrailerData(movieId: movieId)) {[weak self] result in
             switch result {
             case .success(let response):
                 let json = try! JSON(data: response.data)
@@ -60,7 +60,7 @@ class MovieDetailInteractor: MovieDetailInteractorProtocol {
                         data = jsonResult[i]["key"].string ?? ""
                     }
                 }
-                presenter?.didFetchedMovieTrailer(data: data)
+                self?.presenter?.didFetchedMovieTrailer(data: data)
             case .failure(let error):
                 print(error)
             }
