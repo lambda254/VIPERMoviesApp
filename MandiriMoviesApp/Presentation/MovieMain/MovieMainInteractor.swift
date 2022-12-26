@@ -43,9 +43,9 @@ class MovieMainInteractor: MovieMainInteractorProtocol {
                     getPosterImage(imageString: data[i].poster) {[weak self] image in
                         data[i].posterImage = image
                         endCounter += 1
-                        self?.presenter?.didFetchedMovie(result: .success(data))
 
                         if endCounter == data.count {
+                            self?.presenter?.didFetchedMovie(result: .success(data))
                         }
                     }
                 }
