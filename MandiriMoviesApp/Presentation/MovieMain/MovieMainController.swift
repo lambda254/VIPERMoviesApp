@@ -13,7 +13,7 @@ class MovieMainController: ASDKViewController<ASScrollNode> {
     var presenter: MovieMainPresenter?
     
     private let movieCollectionNode = MainCollectionNode()
-        
+    
     private let rootNode: ASScrollNode = {
         let node = ASScrollNode()
         node.automaticallyManagesSubnodes = true
@@ -21,7 +21,7 @@ class MovieMainController: ASDKViewController<ASScrollNode> {
         node.backgroundColor = .white
         return node
     }()
-
+    
     private let loadingNode: ASDisplayNode = {
         let node = ASDisplayNode()
         node.style.width = ASDimensionMake(25)
@@ -37,7 +37,7 @@ class MovieMainController: ASDKViewController<ASScrollNode> {
         node.view.addSubview(loadingSpinner)
         return node
     }()
-
+    
     override init() {
         super.init(node: rootNode)
         setupDelegate()
@@ -87,13 +87,21 @@ class MovieMainController: ASDKViewController<ASScrollNode> {
 
 extension MovieMainController: MovieMainViewProtocol {
     
-    func update(with movies: [MovieMain]) {
-        movieCollectionNode.data += movies
-        UIView.performWithoutAnimation {
-            movieCollectionNode.reloadData()
+    func update(result: Result<[MovieMain], Error>) {
+        switch result {
+        case .success(let data):
+            movieCollectionNode.data += data
+            UIView.performWithoutAnimation {
+                movieCollectionNode.reloadData()
+            }
+            rootNode.setNeedsLayout()
+            loadingNode.isHidden = true
+        case .failure(let error):
+            let error = error as NSError
+            
+            print(error)
+                
         }
-        rootNode.setNeedsLayout()
-        loadingNode.isHidden = true
     }
     
     func update(title: String) {

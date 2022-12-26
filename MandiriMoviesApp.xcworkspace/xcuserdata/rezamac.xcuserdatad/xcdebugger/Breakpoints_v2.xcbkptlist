@@ -14,8 +14,8 @@
             filePath = "MandiriMoviesApp/Presentation/MovieMain/MovieMainController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
             landmarkName = "didCellTap(id:title:poster:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "MandiriMoviesApp/Presentation/MovieMain/MovieMainPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
             landmarkName = "navigateToDetail(id:title:poster:)"
             landmarkType = "7">
          </BreakpointContent>

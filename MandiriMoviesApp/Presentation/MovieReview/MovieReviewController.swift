@@ -117,21 +117,26 @@ class MovieReviewController: ASDKViewController<ASScrollNode> {
 
 extension MovieReviewController: MovieReviewViewProtocol {
     
-    func update(with review: [MovieReview], totalReviewer: Int) {
-        totalReviewerNode.attributedText = NSAttributedString(string: "\(totalReviewer) Reviews", attributes: [
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .bold),
-            NSAttributedString.Key.foregroundColor: UIColor.appBlue,
-            NSAttributedString.Key.paragraphStyle: paragraph
-        ])
-        ratingDescNode.attributedText = NSAttributedString(string: "Excellent", attributes: [
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 19, weight: .medium),
-            NSAttributedString.Key.foregroundColor: UIColor.appBlue
-        ])
-        
-        reviewTableNode.data += review
-        reviewTableNode.reloadData()
-        rootNode.setNeedsLayout()
-        isLoading.toggle()
+    func update(result: Result<[MovieReview], Error>, totalReview: Int) {
+        switch result {
+        case .success(let data):
+            totalReviewerNode.attributedText = NSAttributedString(string: "\(totalReview) Reviews", attributes: [
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .bold),
+                NSAttributedString.Key.foregroundColor: UIColor.appBlue,
+                NSAttributedString.Key.paragraphStyle: paragraph
+            ])
+            ratingDescNode.attributedText = NSAttributedString(string: "Excellent", attributes: [
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 19, weight: .medium),
+                NSAttributedString.Key.foregroundColor: UIColor.appBlue
+            ])
+            
+            reviewTableNode.data += data
+            reviewTableNode.reloadData()
+            rootNode.setNeedsLayout()
+            isLoading.toggle()
+        case .failure(let error):
+            print(error)
+        }
     }
     
 }

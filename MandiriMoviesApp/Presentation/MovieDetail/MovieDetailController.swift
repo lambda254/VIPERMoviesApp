@@ -199,19 +199,25 @@ extension MovieDetailController: MovieDetailViewProtocol {
         titleNode.attributedText = NSAttributedString(string: title, attributes: attrsTitle)
     }
     
-    func update(with detail: MovieDetail) {
-        genreCollectionNode.data = detail.genres
-        genreCollectionNode.reloadData()
-        synopsisDescNode.attributedText = NSAttributedString(string: detail.synopsis, attributes: [
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15)
-        ])
+    func update(result: Result<MovieDetail, Error>) {
+        switch result {
+        case .success(let data):
+            genreCollectionNode.data = data.genres
+            genreCollectionNode.reloadData()
+            synopsisDescNode.attributedText = NSAttributedString(string: data.synopsis, attributes: [
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15)
+            ])
+            
+            starCollectionNode.data = data.rating
+            starCollectionNode.reloadData()
+            
+            ratingNode.attributedText = NSAttributedString(string: "\(String(format: "%.1f", data.rating))/10 ", attributes: [
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15)
+            ])
+        case .failure(let error):
+            print(error)
+        }
         
-        starCollectionNode.data = detail.rating
-        starCollectionNode.reloadData()
-        
-        ratingNode.attributedText = NSAttributedString(string: "\(String(format: "%.1f", detail.rating))/10 ", attributes: [
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15)
-        ])
     }
     
     func update(trailer: String) {

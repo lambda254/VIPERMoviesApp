@@ -10,7 +10,7 @@ import TextureSwiftSupport
 
 protocol MovieDetailViewProtocol: AnyObject {
     var presenter: MovieDetailPresenter? {get set}
-    func update(with detail: MovieDetail)
+    func update(result: Result<MovieDetail, Error>)
     func update(title: String, posterImage: UIImage)
     func update(trailer: String)
 }

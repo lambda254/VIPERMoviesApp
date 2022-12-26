@@ -40,8 +40,9 @@ class MovieDetailInteractor: MovieDetailInteractorProtocol {
                     genresData.append(genres[i]["name"].string ?? "")
                 }
                 
-                presenter?.didFetchedMovieDetail(data: MovieDetail(id: movieId, synopsis: synopsis, genres: genresData, homepage: homepage, rating: rating))
+                presenter?.didFetchedMovieDetail(result: .success(MovieDetail(id: movieId, synopsis: synopsis, genres: genresData, homepage: homepage, rating: rating)))
             case .failure(let error):
+                presenter?.didFetchedMovieDetail(result: .failure(error))
                 print(error)
             }
         }

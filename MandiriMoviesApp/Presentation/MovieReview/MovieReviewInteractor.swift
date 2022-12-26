@@ -42,10 +42,10 @@ class MovieReviewInteractor: MovieReviewInteractorProtocol {
                 }
                 
                 if page > 2 && !data.isEmpty || page == 1 {
-                    presenter?.didFetchedReview(reviewData: data, totalData: jsonTotalResult.intValue)
+                    presenter?.didFetchedReview(result: .success(data), totalReview: jsonTotalResult.intValue)
                 }
             case .failure(let error):
-                print(error)
+                presenter?.didFetchedReview(result: .failure(error), totalReview: 0)
             }
         }
     }

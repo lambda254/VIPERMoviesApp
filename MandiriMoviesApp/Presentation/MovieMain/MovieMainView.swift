@@ -10,6 +10,6 @@ import TextureSwiftSupport
 
 protocol MovieMainViewProtocol: AnyObject {
     var presenter: MovieMainPresenter? {get set}
-    func update(with movies: [MovieMain])
+    func update(result: Result<[MovieMain], Error>)
     func update(title: String)
 }

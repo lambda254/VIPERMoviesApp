@@ -40,16 +40,16 @@ class MovieMainInteractor: MovieMainInteractorProtocol {
                     data.append(MovieMain(id: jsonResult[i]["id"].int ?? 0, title: jsonResult[i]["title"].string ?? "", poster: jsonResult[i]["poster_path"].string ?? "", posterImage: UIImage()))
                 }
                 for i in 0 ..< data.count {
-                    getPosterImage(imageString: data[i].poster) {[unowned self] image in
+                    getPosterImage(imageString: data[i].poster) {[weak self] image in
                         data[i].posterImage = image
                         endCounter += 1
                         if endCounter == data.count {
-                            presenter?.didFetchedMovie(data: data)
+                            self?.presenter?.didFetchedMovie(result: .success(data))
                         }
                     }
                 }
             case .failure(let error):
-                print(error)
+                presenter?.didFetchedMovie(result: .failure(error))
             }
         }
     }

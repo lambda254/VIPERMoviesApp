@@ -14,7 +14,7 @@ protocol MovieDetailPresenterProtocol: AnyObject {
     var view: MovieDetailViewProtocol? {get set}
     
     func didPassedMovieData(id: Int, title: String, posterImage: UIImage)
-    func didFetchedMovieDetail(data: MovieDetail)
+    func didFetchedMovieDetail(result: Result<MovieDetail, Error>)
     func didFetchedMovieTrailer(data: String)
 
     func navigateToReview()
@@ -41,8 +41,13 @@ class MovieDetailPresenter: MovieDetailPresenterProtocol {
         interactor?.getTrailerMovie(movieId: id)
     }
     
-    func didFetchedMovieDetail(data: MovieDetail) {
-        view?.update(with: data)
+    func didFetchedMovieDetail(result: Result<MovieDetail, Error>) {
+        switch result {
+        case .success(let data):
+            view?.update(result: .success(data))
+        case .failure(let error):
+            view?.update(result: .failure(error))
+        }
     }
     
     func didFetchedMovieTrailer(data: String) {
